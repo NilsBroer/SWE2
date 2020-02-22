@@ -5,16 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PicDB"
         mc:Ignorable="d"
-        Title="PicDB" Height="500" Width="500">
-    <Grid>
-        <TabControl TabStripPlacement="Top" Margin="0,0,0.333,-0.333">
-            <TabItem Header="File"/>
+        Title="PicDB" Height="600" Width="600">
+    <Window.Resources>
+        <Style TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    <TabControl TabStripPlacement="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FlowDirection="LeftToRight">
+        <TabItem Header="File">
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Left">
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <Button BorderThickness="0" DockPanel.Dock="Right" HorizontalAlignment="Left" Height="28" Width="23" Background="White">
+                        <Image Source="magnifier.png"/>
+                    </Button>
+                    <TextBox Text="Search..." FontSize="16" HorizontalAlignment="Stretch" Background="Transparent"/>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <Border DockPanel.Dock="Left" Width="350" Height="350">
+                        <Image Margin="10,10,10,10" Source="placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="250" Stretch="Fill"/> <!-- Stretch="Fill" only for mock-up -->
+                    </Border>
+                    <Border DockPanel.Dock="Right">
+                        <TabControl TabStripPlacement="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FlowDirection="LeftToRight">
+                            <TabItem Header="IPTC">
+
+                            </TabItem>
+                            <TabItem Header="EXIF">
+
+                            </TabItem>
+                        </TabControl>
+                    </Border>
+                </DockPanel>
+                <Border DockPanel.Dock="Bottom">
+                    <TextBlock Text="E" />
+                </Border>
+            </DockPanel>
+            </TabItem>
             <TabItem Header="Edit" />
-            <TabItem Header="Options" />
-            <TabItem Header="Help" Margin="305,0,-334.333,0" RenderTransformOrigin="1.721,0.4"/>
+        <TabItem Header="Options" />
+        <TabItem Header="Help" />
         </TabControl>
-        <TextBox Margin="0,25,0,415" 
-                 Text="Suche"/>
-        
-    </Grid>
 </Window>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicDB", "PicDB\PicDB.csproj", "{B88F1B31-86B5-4C97-BBD6-D80D14A7579E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicDB", "PicDB\PicDB.csproj", "{F1CA53B0-0F22-47FF-97DA-96AB0DF86A4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B88F1B31-86B5-4C97-BBD6-D80D14A7579E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B88F1B31-86B5-4C97-BBD6-D80D14A7579E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B88F1B31-86B5-4C97-BBD6-D80D14A7579E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B88F1B31-86B5-4C97-BBD6-D80D14A7579E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1CA53B0-0F22-47FF-97DA-96AB0DF86A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1CA53B0-0F22-47FF-97DA-96AB0DF86A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1CA53B0-0F22-47FF-97DA-96AB0DF86A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1CA53B0-0F22-47FF-97DA-96AB0DF86A4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0B726217-3136-4263-A1A0-8B08F652B82D}
+		SolutionGuid = {6D6B48BC-B26B-4797-918C-7F90C429C850}
 	EndGlobalSection
 EndGlobal
