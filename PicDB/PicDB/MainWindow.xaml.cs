@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,8 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PicDB.database;
 using PicDB.Models;
+using PicDB.database;
 
 namespace PicDB
 {
@@ -29,8 +28,12 @@ namespace PicDB
         public MainWindow()
         {
             InitializeComponent();
+            String Path;
 
-            String Path = @"C:\Users\Nils\Google Drive\UNI\Semester 04\SWE2\PicDB\PicDB";
+            if (System.IO.Directory.GetCurrentDirectory().StartsWith(@"C:\Users\Chris"))    
+                Path = @"C:\Users\Chris\source\repos\SWE2\PicDB\PicDB";
+            else
+                Path = @"C:\Users\Nils\Google Drive\UNI\Semester 04\SWE2\PicDB\PicDB";
 
             List<string> fileNames =
                 new List<string>(
@@ -44,6 +47,7 @@ namespace PicDB
                     Source = new BitmapImage(new Uri(fileName)),
                     Height = 50
                 };
+                Border border = new Border();
                 ImageHolder.Children.Add(image);
             }
 
