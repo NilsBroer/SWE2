@@ -24,7 +24,7 @@ namespace PicDB.database
         {
             SqlCommand command = new SqlCommand(null, Connection)
             {
-                CommandText = $"" + _CommandText
+                CommandText = _CommandText
             };
 
             return command;

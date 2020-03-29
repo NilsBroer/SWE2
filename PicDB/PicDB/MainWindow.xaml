@@ -70,6 +70,8 @@
             </TabItem>
             <TabItem Header="Edit" />
         <TabItem Header="Options" />
-        <TabItem Header="Help" x:Name ="Help" Content="{Binding}"/>
+        <TabItem Header="Help" x:Name ="Help" >
+            <DataGrid x:Name ="MyDataGrid"/>
+        </TabItem>
         </TabControl>
 </Window>

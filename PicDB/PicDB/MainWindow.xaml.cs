@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -32,7 +35,7 @@ namespace PicDB
             List<string> fileNames =
                 new List<string>(
                     System.IO.Directory.EnumerateFiles(Path + "/images/pokemon/",
-                        "*.png")); //TODO: Adapt search pattern to jp(e)g
+                        "*.png")); //TODO: Adapt search pattern to include jp(e)g
 
             foreach (string fileName in fileNames)
             {
@@ -57,6 +60,13 @@ namespace PicDB
             };
 
             CB01.DataContext = CBO1_DC;
+
+            //Following loads simple query into DataTable and displays it in Help via Binding TODO: DELETE, after using somewhere else
+
+            SqlCommand Command = DBhelper.Create_Command("SELECT * FROM Fotografen");
+            DataTable Table = DBhelper.Get_DataTable(Command);
+
+            MyDataGrid.ItemsSource = Table.DefaultView;
         }
     }
 }
