@@ -38,7 +38,7 @@ namespace PicDB
             List<string> fileNames =
                 new List<string>(
                     System.IO.Directory.EnumerateFiles(Path + "/images/pokemon/",
-                        "*.png")); //TODO: Adapt search pattern to include jp(e)g
+                        "*.png")); //TODO: Adapt search pattern to include jp(e)g, then change to relevant pictures (DB?)
 
             foreach (string fileName in fileNames)
             {
@@ -51,7 +51,7 @@ namespace PicDB
                 ImageHolder.Children.Add(image);
             }
 
-            Models.ComboBox CBO1_DC = new Models.ComboBox()
+            Models.ComboBox labelBoxDataContext = new Models.ComboBox()
             {
                 Name = "Select License",
                 Options = new List<string>()
@@ -63,14 +63,25 @@ namespace PicDB
                 }
             };
 
-            CB01.DataContext = CBO1_DC;
+            LabelBox.DataContext = labelBoxDataContext;
 
             //Following loads simple query into DataTable and displays it in Help via Binding TODO: DELETE, after using somewhere else
 
-            SqlCommand Command = DBhelper.Create_Command("SELECT * FROM Fotografen");
-            DataTable Table = DBhelper.Get_DataTable(Command);
+            SqlCommand command = DBhelper.Create_Command("SELECT * FROM Fotografen");
+            DataTable table = DBhelper.Get_DataTable(command);
 
-            MyDataGrid.ItemsSource = Table.DefaultView;
+            MyDataGrid.ItemsSource = table.DefaultView;
+
+            //Load all photographer names into list and apply as ItemsSource, TODO: CAN STAY
+
+            List<String> photographerNames = new List<string>();
+            for (int i = 0; i < table.Rows.Count - 1; i++)
+            {
+                string fullname = table.Rows[i][1].ToString() + " " + table.Rows[i][2].ToString();
+                photographerNames.Add(fullname);
+            }
+
+            PhotographerBox.ItemsSource = photographerNames;
         }
     }
 }
