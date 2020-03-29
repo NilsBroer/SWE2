@@ -70,6 +70,6 @@
             </TabItem>
             <TabItem Header="Edit" />
         <TabItem Header="Options" />
-        <TabItem Header="Help" />
+        <TabItem Header="Help" x:Name ="Help" Content="{Binding}"/>
         </TabControl>
 </Window>
