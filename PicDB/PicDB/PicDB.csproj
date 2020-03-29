@@ -6,14 +6,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="magnifier.png" />
-    <None Remove="placeholder.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="magnifier.png" />
-    <Resource Include="placeholder.png" />
-  </ItemGroup>
-
 </Project>
