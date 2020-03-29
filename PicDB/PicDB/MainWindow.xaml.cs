@@ -24,9 +24,13 @@ namespace PicDB
         public MainWindow()
         {
             InitializeComponent();
+            String Path;
 
-            String Path = @"C:\Users\Chris\source\repos\SWE2\PicDB\PicDB";
-            
+            if (System.IO.Directory.GetCurrentDirectory().StartsWith(@"C:\Users\Chris"))    
+                Path = @"C:\Users\Chris\source\repos\SWE2\PicDB\PicDB";
+            else
+                Path = @"C:\Users\Nils\Google Drive\UNI\Semester 04\SWE2\PicDB\PicDB";
+
             List<string> fileNames = new List<string>(System.IO.Directory.EnumerateFiles(Path + "/images/pokemon/","*.png")); //TODO: Adapt search pattern to jp(e)g
 
             foreach (string fileName in fileNames)
