@@ -66,7 +66,22 @@
             </DockPanel>
             </TabItem>
             <TabItem Header="Edit" />
-        <TabItem Header="Options" />
+        <TabItem Header="Options" x:Name="Options">
+            <StackPanel>
+                <ContentControl>
+                    <Label x:Name="MyLabel1"  Content="{Binding}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                </ContentControl>
+                <ContentControl>
+                    <Label x:Name="MyLabel2"  Content="{Binding}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                </ContentControl>
+                <ContentControl>
+                    <Label x:Name="MyLabel3"  Content="{Binding}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                </ContentControl>
+                <ContentControl>
+                    <Label x:Name="MyLabel4"  Content="{Binding}" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                </ContentControl>
+            </StackPanel>
+        </TabItem>
         <TabItem Header="Help" x:Name ="Help" >
             <DataGrid x:Name ="MyDataGrid"/>
         </TabItem>

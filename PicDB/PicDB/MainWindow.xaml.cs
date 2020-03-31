@@ -67,8 +67,8 @@ namespace PicDB
 
             //Following loads simple query into DataTable and displays it in Help via Binding TODO: DELETE, after using somewhere else
 
-            SqlCommand command = DBhelper.Create_Command("SELECT * FROM Fotografen");
-            DataTable table = DBhelper.Get_DataTable(command);
+            SqlCommand command = DBSingleton.Create_Command("SELECT * FROM Fotografen");
+            DataTable table = DBSingleton.Get_DataTable(command);
 
             MyDataGrid.ItemsSource = table.DefaultView;
 
@@ -82,6 +82,18 @@ namespace PicDB
             }
 
             PhotographerBox.ItemsSource = photographerNames;
+
+            //Get a Photographer by ID (Just tested whether the DataAccessLayer worked with this one)
+
+            DataAccessLayer accessLayer = new DataAccessLayer();
+            DataAccessLayer accessSlayer = new DataAccessLayer();
+            PhotographerModel pg = accessLayer.GetPhotographer(88);
+            PhotographerModel pg2 = accessSlayer.GetPhotographer(2);
+
+            MyLabel1.Content = "Vorname: " + pg2.Vorname;
+            MyLabel2.Content = "Nachname: " + pg2.Nachname;
+            MyLabel3.Content = "Notizen: " + pg2.Notizen;
+            MyLabel4.Content = "Geburtstag: " + pg2.Geburtstag;
         }
     }
 }

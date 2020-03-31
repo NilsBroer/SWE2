@@ -5,13 +5,22 @@ using System.Xml.Linq;
 
 namespace PicDB.database
 {
-    public static class DBhelper
+    public sealed class DBSingleton
     {
+        private static readonly DBSingleton _instance = new DBSingleton();
+        private static string Connection_String = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Chris\source\repos\SWE2\PicDB\PicDB\database\Database1.mdf'; Integrated Security = True; Connect Timeout = 30";
 
-        private static string Connection_String = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Nils\Google Drive\UNI\Semester 04\SWE2\PicDB\PicDB\database\Database1.mdf'; Integrated Security = True; Connect Timeout = 30";
+        //To not mark type as 'beforefieldinit' we state a static constructor
+        //Source: https://csharpindepth.com/articles/singleton [Type 4]
+        static DBSingleton() { }
+        private DBSingleton() { }
+        public static DBSingleton Instance
+        {
+            get { return _instance; }
+        }
 
         public static SqlConnection Connection = Get_Connection();
-        public static SqlConnection Get_Connection()
+        private static SqlConnection Get_Connection()
         {
             SqlConnection connection = new SqlConnection(Connection_String);
             if(connection.State != ConnectionState.Open)
