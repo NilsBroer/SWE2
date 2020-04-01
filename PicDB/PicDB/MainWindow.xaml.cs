@@ -2,21 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using PicDB.Models;
-using PicDB.database;
+using PicDB.Internal;
 
 namespace PicDB
 {
@@ -39,7 +28,7 @@ namespace PicDB
                 new List<string>(
                     System.IO.Directory.EnumerateFiles(Path + "/images/pokemon/",
                         "*.png")); //TODO: Adapt search pattern to include jp(e)g, then change to relevant pictures (DB?)
-
+            
             foreach (string fileName in fileNames)
             {
                 Image image = new Image
@@ -47,11 +36,10 @@ namespace PicDB
                     Source = new BitmapImage(new Uri(fileName)),
                     Height = 50
                 };
-                Border border = new Border();
                 ImageHolder.Children.Add(image);
             }
-
-            Models.ComboBox labelBoxDataContext = new Models.ComboBox()
+            
+            Objects.ComboBox labelBoxDataContext = new Objects.ComboBox()
             {
                 Name = "Select License",
                 Options = new List<string>()
