@@ -6,7 +6,7 @@ namespace PicDB.Models
 {
     class PhotographerModel
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public String Vorname { get; set; }
         public String Nachname { get; set; }
         public DateTime? Geburtstag { get; set; }

@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using PicDB.Internal;
+using PicDB.Models;
 
 namespace PicDB
 {
@@ -70,6 +71,18 @@ namespace PicDB
             }
 
             PhotographerBox.ItemsSource = photographerNames;
+
+            //Get a Photographer by ID (Just tested whether the DataAccessLayer worked with this one)
+
+            DataAccessLayer accessLayer = new DataAccessLayer();
+            DataAccessLayer accessSlayer = new DataAccessLayer();
+            PhotographerModel pg = accessLayer.GetPhotographer(88);
+            PhotographerModel pg2 = accessSlayer.GetPhotographer(2);
+
+            MyLabel1.Content = "Vorname: " + pg2.Vorname;
+            MyLabel2.Content = "Nachname: " + pg2.Nachname;
+            MyLabel3.Content = "Notizen: " + pg2.Notizen;
+            MyLabel4.Content = "Geburtstag: " + pg2.Geburtstag;
         }
     }
 }
