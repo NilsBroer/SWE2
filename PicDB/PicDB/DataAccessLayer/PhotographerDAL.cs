@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data.SqlClient;
-using System.Data;
 using PicDB.Internal;
 using PicDB.Models;
 
 namespace PicDB
 {
-    class DataAccessLayer
+    static class PhotographerDAL
     {
-        public PhotographerModel GetPhotographer(int id)
+        public static PhotographerModel GetPhotographer(int id)
         {
             PhotographerModel pg = new PhotographerModel
             {
@@ -36,10 +33,5 @@ namespace PicDB
             reader.Close();
             return pg;
         }
-
-        //public PictureModel GetPicture(int id)
-        //{
-        //
-        //}
     }
 }
