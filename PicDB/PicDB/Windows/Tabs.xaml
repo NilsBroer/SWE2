@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="PicDB.Tabs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:self="clr-namespace:PicDB"
+             mc:Ignorable="d">
+    <Grid>
+        <TabControl TabStripPlacement="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FlowDirection="LeftToRight">
+            
+            <TabItem Header="File">
+                <self:FileWindow/>
+            </TabItem>
+            
+            <TabItem Header="Edit">
+                <self:EditWindow/>
+            </TabItem>
+
+            <TabItem Header="Options" x:Name="Options">
+                <self:OptionsWindow/>
+            </TabItem>
+            
+            <TabItem Header="Help" x:Name ="Help" >
+                <self:HelpWindow/>
+            </TabItem>
+            
+        </TabControl>
+    </Grid>
+</UserControl>
