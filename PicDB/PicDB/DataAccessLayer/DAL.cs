@@ -8,7 +8,7 @@ using PicDB.Models;
 
 namespace PicDB
 {
-    static class DataAccessLayer
+    static class DAL
     {
         //public PictureModel GetPicture(int id)
         //{

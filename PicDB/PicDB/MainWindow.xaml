@@ -59,6 +59,9 @@
                                         <Setter Property="Margin" Value="25,25,25,0" />
                                     </Style>
                                 </WrapPanel.Resources>
+                                <ListView> <!--Does not necessarily need ScrollViewer-->
+                                    <!--ObservableCollection-->
+                                </ListView>
                                 <!-- Content appended by name in code behind -->
                         </WrapPanel>
                     </ScrollViewer>

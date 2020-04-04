@@ -5,20 +5,20 @@ using PicDB.Models;
 
 namespace PicDB
 {
-    sealed class BusinessLayer
+    sealed class BL
     {
-        private static readonly BusinessLayer _instance = new BusinessLayer();
+        private static readonly BL _instance = new BL();
         public List<PhotographerModel> Photographers { get; set; } = new List<PhotographerModel>();
 
         //To not mark type as 'beforefieldinit' we state a static constructor
         //Source: https://csharpindepth.com/articles/singleton [Type 4]
-        static BusinessLayer() { }
-        private BusinessLayer()
+        static BL() { }
+        private BL()
         {
             
         }
 
-        public static BusinessLayer Instance
+        public static BL Instance
         {
             get { return _instance; }
         }
