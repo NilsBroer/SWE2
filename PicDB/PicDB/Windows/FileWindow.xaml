@@ -16,8 +16,7 @@
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Border DockPanel.Dock="Left" Width="350" Height="350">
-                    <Image Margin="10,10,10,10" Source="../images/internal/placeholder.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="250" Stretch="Fill"/>
-                    <!-- Stretch="Fill" only for mock-up -->
+                    <ListViewItem x:Name="MainImageHolder" Content="{Binding}" />
                 </Border>
                 <Border DockPanel.Dock="Right">
                     <TabControl TabStripPlacement="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FlowDirection="LeftToRight" RenderTransformOrigin="0.5,0.5">

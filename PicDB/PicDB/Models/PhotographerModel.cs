@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 
 namespace PicDB.Models
@@ -7,10 +8,9 @@ namespace PicDB.Models
     class PhotographerModel
     {
         public int Id { get; set; }
-        public String Vorname { get; set; }
-        public String Nachname { get; set; }
-        public DateTime? Geburtstag { get; set; }
-        public String Notizen { get; set; }
-        public List<PictureModel> Pictures { get; }
+        public String Name { get; set; }
+        public String Surname { get; set; }
+        public DateTime? Birthday { get; set; }
+        public String Notes { get; set; }
     }
 }

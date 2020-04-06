@@ -4,17 +4,14 @@ using System.Text;
 
 namespace PicDB.Models
 {
-    class EXIFModel
+    class ExifModel
     {
-        public int exifID { get; private set; }
-        public DateTime? DatumUndUhrzeit { get; set; } = null;
-        public int? Orientierung { get; set; } = null;
-        public float? Brennweite { get; set; } = null;
-        public float? Blendenzahl { get; set; } = null;
-        public float? Belichtungszeit { get; set; } = null;
-        public int? ISO { get; set; } = null;
-        
-        //Datentyp müsste mit NuGet installiert werden. Können wir später machen wenn wir tatsächlich EXIFs schon auslesen.
-        //public whatever? Koordinaten { get; set; } = null;
+        public int Id { get; set; }
+        public DateTime? DateAndTime { get; set; }
+        public int? Orientation { get; set; }
+        public Tuple<float?,float?> FocalLength { get; set; }
+        public float? FNumber { get; set; }
+        public float? Exposure { get; set; }
+        public int? Iso { get; set; }
     }
 }

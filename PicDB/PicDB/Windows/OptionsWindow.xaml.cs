@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 using PicDB.Models;
 
 namespace PicDB
@@ -23,12 +12,12 @@ namespace PicDB
         {
             InitializeComponent();
             //Get a Photographer by ID (Just tested whether the DataAccessLayer worked with this one)
-            PhotographerModel photographer = PhotographerDAL.GetPhotographer(2);
+            PhotographerModel photographer = DataAccessLayer.GetPhotographer(1);
 
-            MyLabel1.Content = "Vorname: " + photographer.Vorname;
-            MyLabel2.Content = "Nachname: " + photographer.Nachname;
-            MyLabel3.Content = "Notizen: " + photographer.Notizen;
-            MyLabel4.Content = "Geburtstag: " + photographer.Geburtstag;
+            MyLabel1.Content = "Name: " + photographer.Name;
+            MyLabel2.Content = "Surname: " + photographer.Surname;
+            MyLabel3.Content = "Notes: " + photographer.Notes;
+            MyLabel4.Content = "Birthday: " + photographer.Birthday;
         }
     }
 }

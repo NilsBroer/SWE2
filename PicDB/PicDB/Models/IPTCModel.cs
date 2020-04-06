@@ -4,15 +4,15 @@ using System.Text;
 
 namespace PicDB.Models
 {
-    class IPTCModel
+    class IptcModel
     {
-        public int iptcID { get; private set; }
-        public String Kategorie { get; set; } = "";
-        public String FreieKategorie1 { get; set; } = "";
-        public String FreieKategorie2 { get; set; } = "";
-        public String FreieKategorie3 { get; set; } = "";
-        public int? Editiert { get; set; } = null;
-        public String Stichworte { get; set; } = "";
-        public DateTime? Erstellungsdatum { get; set; } = null;
+        public int Id { get; set; }
+        public string License { get; set; }
+        public string PhotographerName { get; set; }
+        public String Category { get; set; }
+        public int? IsEdited { get; set; }
+        public String KeyWords { get; set; }
+        public String Notes { get; set; }
+        public DateTime? CreationDate { get; set; }
     }
 }
