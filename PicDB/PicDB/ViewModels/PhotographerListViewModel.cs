@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PicDB.ViewModels
 {
-    class PhotographerListViewModel
+    public class PhotographerListViewModel
     {
     }
 }

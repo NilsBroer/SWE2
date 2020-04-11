@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Windows;
+using PicDB.ViewModels;
 
 namespace PicDB
 {
@@ -11,6 +12,7 @@ namespace PicDB
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }

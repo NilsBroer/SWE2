@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
-
+using PicDB.ViewModels;
 
 namespace PicDB
 {
@@ -12,7 +12,6 @@ namespace PicDB
         public FileWindow()
         {
             InitializeComponent();
-
             Objects.ComboBox labelBoxDataContext = new Objects.ComboBox()
             {
                 Name = "Select License",
@@ -27,15 +26,20 @@ namespace PicDB
 
             LabelBox.DataContext = labelBoxDataContext;
 
+
             PhotographerBox.ItemsSource = BusinessLayer.GetAllPhotographerNames();
+            PictureListViewModel pictureListViewModel = new PictureListViewModel();
+            MainImageHolder.Content = pictureListViewModel.SelectedPicture.Image;//BusinessLayer.PictureToImage(BusinessLayer.GetPicture(/*155 + 0*/));
 
-            MainImageHolder.Content = BusinessLayer.PictureToImage(DataAccessLayer.GetPicture(/*155 + 0*/));
-
-            List<Image> imageList = BusinessLayer.PicturesToImages(DataAccessLayer.GetAllPictures());
+            
+            ImageHolder.ItemsSource = pictureListViewModel.ImageList;
+            /*
+            List<Image> imageList = BusinessLayer.PicturesToImages(BusinessLayer.GetAllPictures());
             foreach (Image image in imageList)
             {
                 ImageHolder.Children.Add(image);    //TODO: Replace WrapPanel (siehe notes)
             }
+            */
         }
     }
 }

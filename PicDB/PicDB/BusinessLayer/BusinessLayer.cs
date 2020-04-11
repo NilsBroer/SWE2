@@ -35,6 +35,21 @@ namespace PicDB
             return photographerNames;
         }
 
+        public static PictureModel GetPicture()
+        {
+            return DataAccessLayer.GetPicture();
+        }
+
+        public static PictureModel GetPicture(int id)
+        {
+            return DataAccessLayer.GetPicture(id);
+        }
+
+        public static List<PictureModel> GetAllPictures()
+        {
+            return DataAccessLayer.GetAllPictures();
+        }
+
         public static Image PictureToImage(PictureModel picture)
         {
             return new Image()

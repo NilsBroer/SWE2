@@ -1,18 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using PicDB.ViewModels;
 
 namespace PicDB.Models
 {
-    class IptcModel
+    public class IPTCModel
     {
         public int Id { get; set; }
-        public string License { get; set; }
-        public string PhotographerName { get; set; }
+        public String License { get; set; }
+        public String PhotographerName { get; set; }
         public String Category { get; set; }
         public int? IsEdited { get; set; }
         public String KeyWords { get; set; }
         public String Notes { get; set; }
         public DateTime? CreationDate { get; set; }
+
+        public void Update(IPTCViewModel iptc)
+        {
+            License = iptc.License;
+            PhotographerName = iptc.PhotographerName;
+            Category = iptc.Category;
+            IsEdited = iptc.IsEdited;
+            KeyWords = iptc.KeyWords;
+            Notes = iptc.Notes;
+            CreationDate = iptc.CreationDate;
+        }
     }
 }

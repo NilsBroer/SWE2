@@ -6,6 +6,6 @@ namespace PicDB.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-
+        public PictureListViewModel pictureListViewModel = new PictureListViewModel();
     }
 }

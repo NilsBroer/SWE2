@@ -19,7 +19,6 @@ namespace PicDB
                 reader.Close();
                 return null;
             }
-
             reader.Read();
 
             PictureModel picture = new PictureModel()
