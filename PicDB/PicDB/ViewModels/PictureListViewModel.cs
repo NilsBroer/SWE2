@@ -24,7 +24,7 @@ namespace PicDB.ViewModels
 
             BusinessLayer.GetAllPictures().ForEach(i =>
             {
-                _imageList.Add(BusinessLayer.PictureToImage(i));
+                _imageList.Add(BusinessLayer.PictureToImage(i)); //Kann verworfen werden, falls bessere LadeSolution gefunden wird
             });
         }
 

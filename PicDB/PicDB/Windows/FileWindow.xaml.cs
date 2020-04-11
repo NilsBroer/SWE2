@@ -29,17 +29,15 @@ namespace PicDB
 
             PhotographerBox.ItemsSource = BusinessLayer.GetAllPhotographerNames();
             PictureListViewModel pictureListViewModel = new PictureListViewModel();
-            MainImageHolder.Content = pictureListViewModel.SelectedPicture.Image;//BusinessLayer.PictureToImage(BusinessLayer.GetPicture(/*155 + 0*/));
-
-            
             ImageHolder.ItemsSource = pictureListViewModel.ImageList;
-            /*
-            List<Image> imageList = BusinessLayer.PicturesToImages(BusinessLayer.GetAllPictures());
-            foreach (Image image in imageList)
-            {
-                ImageHolder.Children.Add(image);    //TODO: Replace WrapPanel (siehe notes)
-            }
-            */
+            MainImageHolder.Content = ImageHolder.SelectedItem;
+        }
+
+        //TODO: Auslagern
+        void changeImage(object sender, SelectionChangedEventArgs args)
+        {
+            Image Clone = new Image() { Source = ((Image)(ImageHolder.SelectedItem)).Source };
+            MainImageHolder.Content = Clone;
         }
     }
 }

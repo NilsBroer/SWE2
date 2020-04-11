@@ -16,7 +16,7 @@
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Border DockPanel.Dock="Left" Width="350" Height="350">
-                    <ListViewItem x:Name="MainImageHolder" Content="{Binding SelectedPicture}" />
+                    <ListViewItem x:Name="MainImageHolder" Content="{Binding}" Height="100" Width="100" IsHitTestVisible="False" />
                 </Border>
                 <Border DockPanel.Dock="Right">
                     <TabControl TabStripPlacement="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" FlowDirection="LeftToRight" RenderTransformOrigin="0.5,0.5">
@@ -30,34 +30,24 @@
                                 <Button Content="Save" Background="LightBlue" Width="60" Margin="0,20,30,0" HorizontalAlignment="Right" />
                             </StackPanel>
                         </TabItem>
-                        <TabItem Header="EXIF">
-
-                        </TabItem>
+                        <TabItem Header="EXIF" />
                     </TabControl>
                 </Border>
             </DockPanel>
             <Border DockPanel.Dock="Bottom">
-              <ListBox x:Name="ImageHolder" Height="100" ItemsSource="{Binding}" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <ListBox.Resources>
-                  <Style TargetType="Image">
-                    <Setter Property="Margin" Value="25,25,25,25" />
-                    <Setter Property="Height" Value="80" />
-                    <Setter Property="Width" Value="80" />
-                  </Style>
-                </ListBox.Resources>
-              </ListBox>
-              <!--
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
-                    <WrapPanel x:Name="ImageHolder">
-                        <WrapPanel.Resources>
-                            <Style TargetType="Image">
-                                <Setter Property="Margin" Value="25,25,25,25" />
-                            </Style>
-                        </WrapPanel.Resources>
-                    </WrapPanel>
-                </ScrollViewer>
-              -->
-                  </Border>
+                <ListBox x:Name="ImageHolder" ItemsSource="{Binding}" SelectionMode="Single" SelectionChanged="changeImage" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                    <ListBox.Resources>
+                        <Style TargetType="Image">
+                            <Setter Property="Margin" Value="10,10,10,10" />
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Border>
         </DockPanel>
     </Grid>
 </UserControl>
