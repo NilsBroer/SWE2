@@ -5,7 +5,7 @@ namespace PicDB.Models
 {
     public class EXIFModel
     {
-        public int Id { get; set; }
+        public int PictureId { get; set; }
         public DateTime? DateAndTime { get; set; }
         public int? Orientation { get; set; }
         public Tuple<float?,float?> FocalLength { get; set; }

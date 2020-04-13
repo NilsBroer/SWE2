@@ -14,20 +14,16 @@ namespace PicDB.ViewModels
         public PictureViewModel(PictureModel pic)
         {
             Id = pic.Id;
-            Iptc = new IPTCViewModel(pic.Iptc);
-            Exif = new EXIFViewModel(pic.Exif);
-            FileName = pic.FileName;
-            FilePath = pic.FilePath;
-            FullPath = Path.Combine(Directory.GetCurrentDirectory(), "images", FilePath, FileName); //not needed yet, remove maybe
+            //Iptc = new IPTCViewModel(BusinessLayer.GetIPTC(pic.Id));
+            //Exif = new EXIFViewModel(BusinessLayer.GetEXIF(pic.Id));
+            FilePath = Path.Combine(Directory.GetCurrentDirectory(), "images", pic.FilePath, pic.FileName); //not needed yet, remove maybe
             Image = BusinessLayer.PictureToImage(pic);
         }
 
         public int Id { get; set; }
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
-        public string FullPath { get; set; } //not needed yet, remove maybe
-        public IPTCViewModel Iptc { get; set; }
-        public EXIFViewModel Exif { get; set; }
+        public string FilePath { get; set; }    //Do we even need this information with our PictureViewModel?
+        //public IPTCViewModel Iptc { get; set; }
+        //public EXIFViewModel Exif { get; set; }
         public Image Image { get; set; }
 
         private PhotographerViewModel _photographer;

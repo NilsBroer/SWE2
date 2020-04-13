@@ -1,4 +1,6 @@
-﻿namespace PicDB.Helper
+﻿
+
+namespace PicDB.Helper
 {
     public static class Internal
     {

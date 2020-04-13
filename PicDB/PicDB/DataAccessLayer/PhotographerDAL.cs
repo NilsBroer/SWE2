@@ -7,7 +7,7 @@ using PicDB.Models;
 
 namespace PicDB
 {
-    static partial class DataAccessLayer
+    sealed partial class DataAccessLayer
     {
         public static PhotographerModel GetPhotographer(int id)
         {
@@ -24,13 +24,14 @@ namespace PicDB
 
             reader.Read();
 
+            int i = 0;
             PhotographerModel photographer = new PhotographerModel
             {
                 Id = id,
-                Name = (string)reader[0],
-                Surname = (string)reader[1],
-                Birthday = reader[2] is DBNull ? null : (DateTime?)reader[2],
-                Notes = reader[3] is DBNull ? null : (string)reader[3]
+                Name = reader[i++] is DBNull ? null : (string)reader[i-1],
+                Surname = reader[i++] is DBNull ? null : (string)reader[i-1],
+                Birthday = reader[i++] is DBNull ? null : (DateTime?)reader[i-1],
+                Notes = reader[i++] is DBNull ? null : (string)reader[i-1]
             };
 
             reader.Close();
@@ -52,13 +53,14 @@ namespace PicDB
 
             while (reader.Read())
             {
+                int i = 0;
                 photographerList.Add(new PhotographerModel()
                 {
-                    Id = (int)reader[0],
-                    Name = (string)reader[1],
-                    Surname = (string)reader[2],
-                    Birthday = reader[3] is DBNull ? null : (DateTime?)reader[3],
-                    Notes = reader[4] is DBNull ? null : (string)reader[4]
+                    Id = (int)reader[i++],
+                    Name = reader[i++] is DBNull ? null : (string)reader[i-1],
+                    Surname = reader[i++] is DBNull ? null : (string)reader[i-1],
+                    Birthday = reader[i++] is DBNull ? null : (DateTime?)reader[i-1],
+                    Notes = reader[i++] is DBNull ? null : (string)reader[i-1]
                 });
             }
 
