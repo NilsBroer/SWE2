@@ -35,9 +35,12 @@ namespace PicDB
         //Events
         void changeImage(object sender, SelectionChangedEventArgs args)
         {
-            var image = BusinessLayer.CloneImage(ImageHolder.SelectedItem);
-            MainImageHolder.Content = image;
-            changeIPTC(image.Tag);
+            if (ImageHolder.SelectedItem != null)
+            {
+                var image = BusinessLayer.CloneImage(ImageHolder.SelectedItem);
+                MainImageHolder.Content = image;
+                changeIPTC(image.Tag);
+            }
         }
 
         void changeIPTC(object id)
@@ -61,6 +64,17 @@ namespace PicDB
                 PhotographerBox.Text = "Select Photographer";
                 NotesBox.Text = "Notes";
                 //TODO: Unselect item?
+            }
+        }
+
+        private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SearchViewModel searchViewModel = new SearchViewModel(SearchBox.Text);
+            if (!searchViewModel.IsSpecific)
+            {
+                PictureListViewModel pictureListViewModel = new PictureListViewModel(BusinessLayer.GetPicturesOneParam(searchViewModel.Search));
+                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesOneParam(searchViewModel.Search));
+                MainImageHolder.Content = ImageHolder.SelectedItem;
             }
         }
     }

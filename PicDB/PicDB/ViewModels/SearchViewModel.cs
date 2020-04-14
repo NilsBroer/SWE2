@@ -5,12 +5,33 @@ using PicDB.Models;
 
 namespace PicDB.ViewModels
 {
-    class SearchViewModel : BaseViewModel
+    public class SearchViewModel : BaseViewModel
     {
-        //Still needs Logic
-        public String Search { get; set; }
-        public PhotographerModel Photographer { get; set; }
-        public EXIFModel EXIF { get; set; }
-        public IPTCModel IPTC { get; set; }
+        private String _search;
+
+        public SearchViewModel() { }
+        public SearchViewModel(String searchtext)
+        {
+            Search = searchtext;
+            HasMultiple = searchtext.Contains(' ');
+            IsSpecific = searchtext.Contains(':');
+
+            if (IsSpecific)
+                CustomSearch = searchtext.Split(' ', ':', StringSplitOptions.RemoveEmptyEntries);                
+        }
+
+        public bool IsActive { get; set; }
+        public bool HasMultiple { get; set; }
+        public bool IsSpecific { get; set; }
+        public String Search
+        {
+            get => _search;
+            set
+            {
+                _search = value;
+                IsActive = !String.IsNullOrEmpty(_search);
+            }
+        }
+        public String[] CustomSearch { get; set; } = null;
     }
 }

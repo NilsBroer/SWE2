@@ -28,6 +28,20 @@ namespace PicDB.ViewModels
             });
         }
 
+        public PictureListViewModel(List<PictureModel> models)
+        {
+            models.ForEach(i =>
+            {
+                _list.Add(new PictureViewModel(i));
+            });
+            SelectedPicture = _list.FirstOrDefault();
+
+            models.ForEach(i =>
+            {
+                _imageList.Add(BusinessLayer.PictureToImage(i)); //Kann verworfen werden, falls bessere LadeSolution gefunden wird
+            });
+        }
+
         public int Count { get; set; }
         public int SelectedIndex { get; set; }
         public String PictureString { get; set; }

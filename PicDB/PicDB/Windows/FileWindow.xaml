@@ -9,10 +9,10 @@
     <Grid>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <Button BorderThickness="0" DockPanel.Dock="Right" HorizontalAlignment="Left" Height="28" Width="23" Background="White">
+                <Button Name="SearchButton" Click="SearchButton_Click" BorderThickness="0" DockPanel.Dock="Right" HorizontalAlignment="Left" Height="28" Width="23" Background="White">
                     <Image Source="../images/internal/magnifier.png"/>
                 </Button>
-                <TextBox Text="Search..." FontSize="16" HorizontalAlignment="Stretch" Background="Transparent"/>
+                <TextBox Name="SearchBox"  Text="Search..." FontSize="16" HorizontalAlignment="Stretch" Background="Transparent"/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Border DockPanel.Dock="Left" Width="350" Height="350">
