@@ -70,11 +70,23 @@ namespace PicDB
         private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             SearchViewModel searchViewModel = new SearchViewModel(SearchBox.Text);
-            if (!searchViewModel.IsSpecific)
+            if (!searchViewModel.IsSpecific && !searchViewModel.HasMultiple)
             {
                 PictureListViewModel pictureListViewModel = new PictureListViewModel(BusinessLayer.GetPicturesOneParam(searchViewModel.Search));
                 ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesOneParam(searchViewModel.Search));
                 MainImageHolder.Content = ImageHolder.SelectedItem;
+            }
+
+            if(!searchViewModel.IsSpecific && searchViewModel.HasMultiple)
+            {
+                PictureListViewModel pictureListViewModel = new PictureListViewModel(BusinessLayer.GetPicturesMultipleParams(searchViewModel.MultipleSearch));
+                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesMultipleParams(searchViewModel.MultipleSearch));
+                MainImageHolder.Content = ImageHolder.SelectedItem;
+            }
+
+            if (searchViewModel.IsSpecific)
+            {
+                throw new System.NotImplementedException();
             }
         }
     }

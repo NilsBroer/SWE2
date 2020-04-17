@@ -16,8 +16,11 @@ namespace PicDB.ViewModels
             HasMultiple = searchtext.Contains(' ');
             IsSpecific = searchtext.Contains(':');
 
-            if (IsSpecific)
-                CustomSearch = searchtext.Split(' ', ':', StringSplitOptions.RemoveEmptyEntries);                
+            if (HasMultiple)
+                MultipleSearch = searchtext.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            if (IsSpecific) //WIP
+                SpecificSearch = searchtext.Split(' ', ':', StringSplitOptions.RemoveEmptyEntries);                
         }
 
         public bool IsActive { get; set; }
@@ -32,6 +35,7 @@ namespace PicDB.ViewModels
                 IsActive = !String.IsNullOrEmpty(_search);
             }
         }
-        public String[] CustomSearch { get; set; } = null;
+        public String[] MultipleSearch { get; set; } = null;
+        public String[] SpecificSearch { get; set; } = null;
     }
 }

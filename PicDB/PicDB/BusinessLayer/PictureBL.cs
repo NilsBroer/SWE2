@@ -24,6 +24,11 @@ namespace PicDB
             return DataAccessLayer.GetPicturesOneParam(param);
         }
 
+        public static List<PictureModel> GetPicturesMultipleParams(String[] param)
+        {
+            return DataAccessLayer.GetPicturesMultipleParams(param);
+        }
+
         public static Image PictureToImage(PictureModel picture)
         {
             return new Image()

@@ -97,6 +97,43 @@ namespace PicDB
             return pictureList;
         }
 
+        public static List<PictureModel> GetPicturesMultipleParams(String[] param)
+        {
+            SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE 1=2");
+
+            foreach (String i in param)
+            {
+                command.CommandText = command.CommandText + (" OR IPTC.PhotographerName = @" + i + " OR IPTC.Category = @" + i + " OR IPTC.KeyWords = @" + i + " OR IPTC.Notes = @" + i);
+                command.Parameters.AddWithValue(("@" + i), i);
+            }
+
+            SqlDataReader reader = command.ExecuteReader();
+            List<PictureModel> pictureList = new List<PictureModel>();
+
+            if (!reader.HasRows)
+            {
+                reader.Close();
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    int i = 0;
+                    pictureList.Add(new PictureModel()
+                    {
+                        Id = (int)reader[i++],
+                        FileName = reader[i++] is DBNull ? null : (string)reader[i - 1],
+                        FilePath = reader[i++] is DBNull ? null : (string)reader[i - 1],
+                        Photographer = reader[i++] is DBNull ? null : GetPhotographer((int)reader[i - 1])
+                    });
+                }
+
+                reader.Close();
+            }
+
+            return pictureList;
+        }
+
         /*
         public static PictureModel GetFirstPicture()
         {
