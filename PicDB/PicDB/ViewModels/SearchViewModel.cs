@@ -10,17 +10,17 @@ namespace PicDB.ViewModels
         private String _search;
 
         public SearchViewModel() { }
-        public SearchViewModel(String searchtext)
+        public SearchViewModel(String searchText)
         {
-            Search = searchtext;
-            HasMultiple = searchtext.Contains(' ');
-            IsSpecific = searchtext.Contains(':');
+            Search = searchText;
+            HasMultiple = searchText.Contains(' ');
+            IsSpecific = searchText.Contains(':');
 
             if (HasMultiple)
-                MultipleSearch = searchtext.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                MultipleSearch = searchText.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
             if (IsSpecific) //WIP
-                SpecificSearch = searchtext.Split(' ', ':', StringSplitOptions.RemoveEmptyEntries);                
+                SpecificSearch = searchText.Split(' ', ':', StringSplitOptions.RemoveEmptyEntries);                
         }
 
         public bool IsActive { get; set; }

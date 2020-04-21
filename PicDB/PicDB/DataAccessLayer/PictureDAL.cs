@@ -68,7 +68,7 @@ namespace PicDB
 
         public static List<PictureModel> GetPicturesOneParam(String param)
         {
-            SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE IPTC.PhotographerName = @param OR IPTC.Category = @param OR IPTC.KeyWords = @param OR IPTC.Notes = @param");
+            SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE CHARINDEX(@param,IPTC.PhotographerName) > 0 OR CHARINDEX(@param,IPTC.Category) > 0 OR CHARINDEX(@param,IPTC.KeyWords) > 0");
             command.Parameters.AddWithValue("@param", param);
             SqlDataReader reader = command.ExecuteReader();
             List<PictureModel> pictureList = new List<PictureModel>();
@@ -99,12 +99,12 @@ namespace PicDB
 
         public static List<PictureModel> GetPicturesMultipleParams(String[] param)
         {
-            SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE 1=2");
+            SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE 1=1");
 
             foreach (String i in param)
             {
-                command.CommandText = command.CommandText + (" OR IPTC.PhotographerName = @" + i + " OR IPTC.Category = @" + i + " OR IPTC.KeyWords = @" + i + " OR IPTC.Notes = @" + i);
-                command.Parameters.AddWithValue(("@" + i), i);
+                command.CommandText = command.CommandText + ($" AND ( CHARINDEX(@{i},IPTC.PhotographerName) > 0 OR CHARINDEX(@{i},IPTC.Category) > 0 OR CHARINDEX(@{i},IPTC.KeyWords) > 0 )");
+                command.Parameters.AddWithValue(($"@{i}"), i);
             }
 
             SqlDataReader reader = command.ExecuteReader();

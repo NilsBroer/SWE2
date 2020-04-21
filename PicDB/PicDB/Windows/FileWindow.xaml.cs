@@ -73,7 +73,7 @@ namespace PicDB
             if (!searchViewModel.IsSpecific && !searchViewModel.HasMultiple)
             {
                 PictureListViewModel pictureListViewModel = new PictureListViewModel(BusinessLayer.GetPicturesOneParam(searchViewModel.Search));
-                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesOneParam(searchViewModel.Search));
+                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesOneParam(searchViewModel.Search)); //Merge with above aka use ViewModel?
                 MainImageHolder.Content = ImageHolder.SelectedItem;
             }
 
