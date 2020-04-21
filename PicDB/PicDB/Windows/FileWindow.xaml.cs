@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using PicDB.ViewModels;
 
 namespace PicDB
@@ -67,27 +71,37 @@ namespace PicDB
             }
         }
 
-        private void SearchButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             SearchViewModel searchViewModel = new SearchViewModel(SearchBox.Text);
-            if (!searchViewModel.IsSpecific && !searchViewModel.HasMultiple)
+            if (!searchViewModel.IsActive)
+            {
+                PictureListViewModel pictureListViewModel = new PictureListViewModel(BusinessLayer.GetAllPictures());
+                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetAllPictures()); //TODO: Merge with above aka use ViewModel
+                MainImageHolder.Content = ImageHolder.SelectedItem;
+            }
+            else if (!searchViewModel.IsSpecific && !searchViewModel.HasMultiple)
             {
                 PictureListViewModel pictureListViewModel = new PictureListViewModel(BusinessLayer.GetPicturesOneParam(searchViewModel.Search));
-                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesOneParam(searchViewModel.Search)); //Merge with above aka use ViewModel?
+                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesOneParam(searchViewModel.Search)); //TODO: Merge with above aka use ViewModel
                 MainImageHolder.Content = ImageHolder.SelectedItem;
             }
-
-            if(!searchViewModel.IsSpecific && searchViewModel.HasMultiple)
+            else if(!searchViewModel.IsSpecific && searchViewModel.HasMultiple)
             {
                 PictureListViewModel pictureListViewModel = new PictureListViewModel(BusinessLayer.GetPicturesMultipleParams(searchViewModel.MultipleSearch));
-                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesMultipleParams(searchViewModel.MultipleSearch));
+                ImageHolder.ItemsSource = BusinessLayer.PicturesToImages(BusinessLayer.GetPicturesMultipleParams(searchViewModel.MultipleSearch)); //TODO: Merge with above aka use ViewModel
                 MainImageHolder.Content = ImageHolder.SelectedItem;
             }
-
-            if (searchViewModel.IsSpecific)
+            else if (searchViewModel.IsSpecific)
             {
                 throw new System.NotImplementedException();
             }
+        }
+
+        private void SearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if(e.Key == Key.Return) //Uncomment if performance issues surface
+                SearchButton_Click(sender, e);
         }
     }
 }

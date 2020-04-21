@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using PicDB.Models;
 
 namespace PicDB.ViewModels
@@ -32,7 +33,7 @@ namespace PicDB.ViewModels
             set
             {
                 _search = value;
-                IsActive = !String.IsNullOrEmpty(_search);
+                IsActive = !String.IsNullOrEmpty(_search) && !Regex.IsMatch(_search, @"^ *$");
             }
         }
         public String[] MultipleSearch { get; set; } = null;
