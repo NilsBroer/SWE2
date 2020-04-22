@@ -124,5 +124,15 @@ namespace PicDB
             //if(e.Key == Key.Return) //Uncomment if performance issues surface
                 SearchButton_Click(sender, e);
         }
+
+        private void SearchBox_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+        }
+
+        private void SearchBox_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if(SearchBox.Text.Length == 0) { SearchBox.Text = "Search..."; }
+        }
     }
 }
