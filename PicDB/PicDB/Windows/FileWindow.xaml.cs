@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using PicDB.Models;
 using PicDB.ViewModels;
 
 namespace PicDB
@@ -73,16 +74,22 @@ namespace PicDB
 
         void saveIPTC(object id)
         {
-            var iptc = BusinessLayer.GetIPTC(id); //Skips ViewModelLayer
-            if (iptc != null)
+            var iptc = new IPTCModel() //Skips ViewModelLayer
             {
-                iptc.License = (string)(LicenseBox.SelectedItem);
-                iptc.Category = CategoryBox.Text;
-                iptc.KeyWords = KeyWordsBox.Text;
-                iptc.PhotographerName = (string)(PhotographerBox.SelectedItem);
-                iptc.Notes = NotesBox.Text;
-            }
+                PictureId = (int)id,
+                License = (string) (LicenseBox.SelectedItem ?? LicenseBox.Text),
+                Category = CategoryBox.Text,
+                KeyWords = KeyWordsBox.Text,
+                PhotographerName = (string) (PhotographerBox.SelectedItem ?? PhotographerBox.Text),
+                Notes = NotesBox.Text
+            };
             BusinessLayer.saveIPTC(iptc);
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var image = (Image)(MainImageHolder.Content);
+            saveIPTC(image.Tag);
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -111,7 +118,7 @@ namespace PicDB
                 throw new System.NotImplementedException();
             }
         }
-
+        
         private void SearchBox_KeyDown(object sender, KeyEventArgs e)
         {
             //if(e.Key == Key.Return) //Uncomment if performance issues surface

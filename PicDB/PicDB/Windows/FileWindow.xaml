@@ -27,7 +27,7 @@
                                 <TextBox x:Name="KeyWordsBox" Margin="20,10,20,0" Text="KeyWords" />
                                 <ComboBox x:Name ="PhotographerBox" Height = "20" Width = "Auto" HorizontalAlignment="Stretch" Margin="20,10,20,0" IsEditable="True" IsReadOnly="True" Text="It doesn't matter what this says, but binding would make it empty" ItemsSource="{Binding}" />
                                 <TextBox x:Name="NotesBox" Margin="20,10,20,0" Height="150" Text="Notes" HorizontalContentAlignment="left" VerticalContentAlignment="Center" TextWrapping ="Wrap"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-                                <Button Content="Save" Background="LightBlue" Width="60" Margin="0,20,30,0" HorizontalAlignment="Right" />
+                                <Button Content="Save" Click="SaveButton_Click" Background="LightBlue" Width="60" Margin="0,20,30,0" HorizontalAlignment="Right" />
                             </StackPanel>
                         </TabItem>
                         <TabItem Header="EXIF">

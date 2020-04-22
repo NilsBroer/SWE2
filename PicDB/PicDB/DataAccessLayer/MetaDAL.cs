@@ -75,7 +75,38 @@ namespace PicDB
 
         public static void saveIPTC(IPTCModel iptc)
         {
-            throw new NotImplementedException();
+            SqlCommand command;
+            var old = GetIPTC(iptc.PictureId);
+            if(old != null)
+            {
+                command = DbHelper.CreateCommand("UPDATE IPTC SET " +
+                                                            "License = @license," +
+                                                            "PhotographerName = @photographer," +
+                                                            "Category = @category," +
+                                                            "IsEdited = @edited," +
+                                                            "KeyWords = @keyWords," +
+                                                            "Notes = @notes," +
+                                                            "CreationDate = @date" +
+                                                            " WHERE PictureId = @id");
+                command.Parameters.AddWithValue("@edited", true);
+                command.Parameters.AddWithValue("@date", old.CreationDate);
+            }
+            else
+            {
+                command = DbHelper.CreateCommand("INSERT INTO IPTC " +
+                                                    "(PictureId, License, PhotographerName, Category, IsEdited, KeyWords, Notes, CreationDate)" +
+                                                    " VALUES (@id, @license, @photographer, @category, @edited, @keyWords, @notes, @date)");
+                command.Parameters.AddWithValue("@edited", false);
+                command.Parameters.AddWithValue("@date", DateTime.Now);
+            }
+            command.Parameters.AddWithValue("@id", iptc.PictureId);
+            command.Parameters.AddWithValue("@license", iptc.License ?? old.License);
+            command.Parameters.AddWithValue("@photographer", iptc.PhotographerName ?? old.PhotographerName);
+            command.Parameters.AddWithValue("@category", iptc.Category ?? old.Category);
+            command.Parameters.AddWithValue("@keyWords", iptc.KeyWords ?? old.KeyWords);
+            command.Parameters.AddWithValue("@notes", iptc.Notes ?? old.Notes);
+
+            command.ExecuteNonQuery();
         }
     }
 }
