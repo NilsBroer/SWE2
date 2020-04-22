@@ -44,31 +44,45 @@ namespace PicDB
                 var image = BusinessLayer.CloneImage(ImageHolder.SelectedItem);
                 MainImageHolder.Content = image;
                 changeIPTC(image.Tag);
+                changeEXIF(image.Tag);
             }
+        }
+
+        void changeEXIF(object id)
+        {
+            var exif = new EXIFViewModel(BusinessLayer.GetEXIF(id));
+
+            DateTimeBlock.Text = exif.DateAndTime; // ?? "DD:MM:YYYY hh:mm:ss";
+            OrientationBlock.Text = exif.Orientation; // ?? "XX°";
+            FocalLengthBlock.Text = exif.FocalLength; // ?? "XXmm - YYmm";
+            FNumberBlock.Text = exif.FNumber; // ?? "f/X.X";
+            ExposureBlock.Text = exif.Exposure; // ?? "1/XXX or Y\"";
+            IsoBlock.Text = exif.Iso; // ?? "XXX";
         }
 
         void changeIPTC(object id)
         {
-            var iptc = BusinessLayer.GetIPTC(id);
-            if(iptc != null)
+            var iptc = new IPTCViewModel(BusinessLayer.GetIPTC(id));
+
+            LicenseBox.Text = iptc.License ?? "Select License";
+            CategoryBox.Text = iptc.Category ?? "Category";
+            KeyWordsBox.Text = iptc.KeyWords ?? "KeyWords";
+            PhotographerBox.Text = iptc.PhotographerName ?? "Select Photographer";
+            NotesBox.Text = iptc.Notes ?? "Notes...";
+        }
+
+        void saveIPTC(object id)
+        {
+            var iptc = BusinessLayer.GetIPTC(id); //Skips ViewModelLayer
+            if (iptc != null)
             {
-                LicenseBox.Text = iptc.License ?? LicenseBox.Text;
-                CategoryBox.Text = iptc.Category ?? CategoryBox.Text;
-                KeyWordsBox.Text = iptc.KeyWords ?? KeyWordsBox.Text;
-                PhotographerBox.Text = iptc.PhotographerName ?? PhotographerBox.Text;
-                NotesBox.Text = iptc.Notes ?? "";
-                //TODO: + selected items = , for submitt with save-button, e.g.:
-                //PhotographerBox.SelectedItem = iptc.PhotographerName;
+                iptc.License = (string)(LicenseBox.SelectedItem);
+                iptc.Category = CategoryBox.Text;
+                iptc.KeyWords = KeyWordsBox.Text;
+                iptc.PhotographerName = (string)(PhotographerBox.SelectedItem);
+                iptc.Notes = NotesBox.Text;
             }
-            else
-            {
-                LicenseBox.Text = "Select License";
-                CategoryBox.Text = "Category";
-                KeyWordsBox.Text = "KeyWords";
-                PhotographerBox.Text = "Select Photographer";
-                NotesBox.Text = "Notes";
-                //TODO: Unselect item?
-            }
+            BusinessLayer.saveIPTC(iptc);
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)

@@ -30,7 +30,22 @@
                                 <Button Content="Save" Background="LightBlue" Width="60" Margin="0,20,30,0" HorizontalAlignment="Right" />
                             </StackPanel>
                         </TabItem>
-                        <TabItem Header="EXIF" />
+                        <TabItem Header="EXIF">
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" Margin="0,30,0,0">Date and Time:</TextBlock>
+                                <TextBlock x:Name="DateTimeBlock" />
+                                <TextBlock FontWeight="Bold" Margin="0,10,0,0">Orientation:</TextBlock>
+                                <TextBlock x:Name="OrientationBlock" />
+                                <TextBlock FontWeight="Bold" Margin="0,10,0,0">Focal Length:</TextBlock>
+                                <TextBlock x:Name="FocalLengthBlock" />
+                                <TextBlock FontWeight="Bold" Margin="0,10,0,0">F-Number:</TextBlock>
+                                <TextBlock x:Name="FNumberBlock" />
+                                <TextBlock FontWeight="Bold" Margin="0,10,0,0">Exposure (time):</TextBlock>
+                                <TextBlock x:Name="ExposureBlock" />
+                                <TextBlock FontWeight="Bold" Margin="0,10,0,0">ISO:</TextBlock>
+                                <TextBlock x:Name="IsoBlock" />
+                            </StackPanel>
+                        </TabItem>
                     </TabControl>
                 </Border>
             </DockPanel>

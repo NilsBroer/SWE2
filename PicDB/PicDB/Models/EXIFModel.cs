@@ -10,17 +10,7 @@ namespace PicDB.Models
         public int? Orientation { get; set; }
         public Tuple<float?,float?> FocalLength { get; set; }
         public float? FNumber { get; set; }
-        public float? Exposure { get; set; }
+        public string Exposure { get; set; }
         public int? Iso { get; set; }
-
-        public void Update(EXIFViewModel exif)
-        {
-            DateAndTime = exif.DateAndTime;
-            Orientation = exif.Orientation;
-            FocalLength = exif.FocalLength;
-            FNumber = exif.FNumber;
-            Exposure = exif.Exposure;
-            Iso = exif.Iso;
-        }
     }
 }
