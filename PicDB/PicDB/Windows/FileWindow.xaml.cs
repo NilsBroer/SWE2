@@ -89,7 +89,7 @@ namespace PicDB
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             var image = (Image)(MainImageHolder.Content);
-            saveIPTC(image.Tag);
+            if(image != null) { saveIPTC(image.Tag); }
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
