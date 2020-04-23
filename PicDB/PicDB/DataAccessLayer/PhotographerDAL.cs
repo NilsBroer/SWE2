@@ -11,7 +11,7 @@ namespace PicDB
     {
         public static PhotographerModel GetPhotographer(int id)
         {
-            SqlCommand command = DbHelper.CreateCommand("SELECT Name, Surname, Birthday, Notes FROM Photographers WHERE Id = @Id;"); //TODO: Cut time from Birthday
+            SqlCommand command = DbHelper.CreateCommand("SELECT Name, Surname, Birthday, Notes FROM Photographers WHERE Id = @Id;");
             command.Parameters.AddWithValue("@Id", id);
 
             SqlDataReader reader = command.ExecuteReader();
@@ -40,7 +40,7 @@ namespace PicDB
 
         public static List<PhotographerModel> GetAllPhotographers()
         {
-            SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Photographers"); //TODO: Cut time from Birthday
+            SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Photographers");
             SqlDataReader reader = command.ExecuteReader();
 
             if (!reader.HasRows)
