@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PicDB.Models;
+﻿using System.Configuration;
 
 namespace PicDB.ViewModels
 {
@@ -11,5 +8,7 @@ namespace PicDB.ViewModels
 
         public PictureListViewModel List { get; } = new PictureListViewModel();
         public SearchViewModel Search { get; } = new SearchViewModel();
+
+        public string Title = ConfigurationManager.AppSettings["Title"];
     }
 }

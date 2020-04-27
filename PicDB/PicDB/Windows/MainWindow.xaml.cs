@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Configuration;
+using System.IO;
 using System.Windows;
 using PicDB.ViewModels;
 
@@ -12,7 +13,9 @@ namespace PicDB
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            var mainWindowViewModel = new MainWindowViewModel();
+            DataContext = mainWindowViewModel;
+            Title = mainWindowViewModel.Title; //This is not really useful, just to show how one would do it 
         }
     }
 }

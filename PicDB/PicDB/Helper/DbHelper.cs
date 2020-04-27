@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -24,10 +25,10 @@ namespace PicDB.Helper
         public static string GetConnectionString()
         {
             return
-                System.IO.Directory.GetCurrentDirectory().StartsWith(@"C:\Users\Nils") ?
-                @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Nils\Google Drive\UNI\Semester 04\SWE2\PicDB\PicDB\database\PicDB.mdf'; Integrated Security=True; MultipleActiveResultSets=true; Connect Timeout = 30" :
-                @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Chris\source\repos\SWE2\PicDB\PicDB\database\Database1.mdf'; Integrated Security = True; MultipleActiveResultSets=true; Connect Timeout = 30";
-        }       //MultipleActiveResultSets=true allows us to use DataReaders in nested functions (and then close them after)
+                System.IO.Directory.GetCurrentDirectory().StartsWith(@"C:\Users\Nils")
+                    ? ConfigurationManager.ConnectionStrings["NilsConnectionString"].ConnectionString
+                    : ConfigurationManager.ConnectionStrings["ChrisConnectionString"].ConnectionString;
+        }
 
         private static SqlConnection GetConnection()
         {
