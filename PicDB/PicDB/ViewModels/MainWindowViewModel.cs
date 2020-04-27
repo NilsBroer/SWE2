@@ -8,7 +8,5 @@ namespace PicDB.ViewModels
 
         public PictureListViewModel List { get; } = new PictureListViewModel();
         public SearchViewModel Search { get; } = new SearchViewModel();
-
-        public string Title = ConfigurationManager.AppSettings["Title"];
     }
 }

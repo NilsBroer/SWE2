@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:self="clr-namespace:PicDB"
         mc:Ignorable="d"
-        Title="{Binding}" Height="570" Width="600">
+        Title="PicDB" Height="550" Width="600">
     
     <Window.Resources>
         <Style TargetType="Border">

@@ -15,7 +15,6 @@ namespace PicDB
             InitializeComponent();
             var mainWindowViewModel = new MainWindowViewModel();
             DataContext = mainWindowViewModel;
-            Title = mainWindowViewModel.Title; //This is not really useful, just to show how one would do it 
         }
     }
 }
