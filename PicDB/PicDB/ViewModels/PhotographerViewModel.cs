@@ -17,12 +17,14 @@ namespace PicDB.ViewModels
                 Surname = photographer.Surname;
                 Birthday = photographer.Birthday;
                 Notes = photographer.Notes;
+                FullName = Name + " " + Surname;
             }
         }
 
         public int Id { get; }
         public String Name { get; set; }
         public String Surname { get; set; }
+        public String FullName { get; set; }
         public DateTime? Birthday { get; set; }
         public String Notes { get; set; }
     }
