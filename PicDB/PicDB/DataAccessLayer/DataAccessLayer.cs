@@ -1,4 +1,5 @@
 ﻿using System;
+using Serilog.Core;
 
 namespace PicDB
 {

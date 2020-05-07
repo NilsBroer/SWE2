@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using Serilog;
+using Serilog.Core;
 
 namespace PicDB.Helper
 {
