@@ -10,6 +10,12 @@ namespace PicDB
         {
             return DataAccessLayer.GetPhotographer(id);
         }
+
+        public static List<PhotographerModel> GetAllPhotographers()
+        {
+            return DataAccessLayer.GetAllPhotographers();
+        }
+
         public static List<string> GetAllPhotographerNames()
         {
             List<PhotographerModel> photographerList = DataAccessLayer.GetAllPhotographers();

@@ -7,6 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+        <DockPanel>
+            <Border DockPanel.Dock="Left" Width="400">
+                <ListBox x:Name="PhotographerListBox" ItemsSource="{Binding}" SelectionChanged="changePhotographer" DisplayMemberPath="FullName">
+
+                </ListBox>
+            </Border>
+            <Border DockPanel.Dock="Right">
+                <StackPanel>
+                    <TextBox x:Name="FirstnameBox" KeyDown="FirstnameBox_KeyDown" Height = "20" Width = "Auto" HorizontalAlignment="Stretch" Margin="20,10,20,0" Text="First Name" />
+                    <TextBox x:Name="SurnameBox" KeyDown="SurnameBox_KeyDown" Margin="20,10,20,0" Text="Surname" />
+                    <DatePicker x:Name="BirthdayBox" SelectedDateChanged="BirthdayBox_SelectedDateChanged" Margin="20,10,20,0" Text="Birthday" />
+                    <TextBox x:Name="NotesBox"  KeyDown="NotesBox_KeyDown" Margin="20,10,20,0" Height="150" Text="Notes" HorizontalContentAlignment="left" VerticalContentAlignment="Center" TextWrapping ="Wrap"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                    <Button Content="Update" Click="Update_Click" Background="LightBlue" Width="60" Margin="0,20,30,0" HorizontalAlignment="Right" />
+                    <Button Content="Create" Click="Create_Click" Background="LightBlue" Width="60" Margin="0,5,30,30" HorizontalAlignment="Right" />
+                </StackPanel>
+            </Border>
+        </DockPanel>
     </Grid>
 </UserControl>
