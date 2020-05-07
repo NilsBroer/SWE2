@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Serilog;
+using EH = PicDB.Helper.ExceptionHandling;
 
 namespace PicDB
 {
@@ -11,31 +13,40 @@ namespace PicDB
     {
         public static PictureModel GetPicture(int id)
         {
-            return DataAccessLayer.GetPicture(id);
+            return EH.Try(() => DataAccessLayer.GetPicture(id));
         }
 
         public static List<PictureModel> GetAllPictures()
         {
-            return DataAccessLayer.GetAllPictures();
+            return EH.Try(DataAccessLayer.GetAllPictures);
         }
 
         public static List<PictureModel> GetPicturesOneParam(String param)
         {
-            return DataAccessLayer.GetPicturesOneParam(param);
+            return EH.Try(() => DataAccessLayer.GetPicturesOneParam(param));
         }
 
         public static List<PictureModel> GetPicturesMultipleParams(String[] param)
         {
-            return DataAccessLayer.GetPicturesMultipleParams(param);
+            return EH.Try(() => DataAccessLayer.GetPicturesMultipleParams(param));
         }
 
         public static Image PictureToImage(PictureModel picture)
         {
-            return new Image()
+            try
             {
-                Source = new BitmapImage(new Uri(Internal.Path + "/images/" + picture.FilePath + picture.FileName)), //TODO: Handle all possible errors
-                Tag = picture.Id
-            };
+                return new Image()
+                {
+                    Source = new BitmapImage(new Uri(Internal.Path + "/images/" + picture.FilePath + picture.FileName)), //TODO: Handle all possible errors
+                    Tag = picture.Id
+                };
+            }
+            catch (Exception e)
+            {
+                Log.Warning("Could not convert Picture(Model) to (System..Media..)Image. Exception: {e}", e);
+                return null;
+            }
+            
         }
 
         public static List<Image> PicturesToImages(List<PictureModel> pictureList)

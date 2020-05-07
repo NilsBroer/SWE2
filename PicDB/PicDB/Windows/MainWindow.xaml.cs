@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using PicDB.ViewModels;
@@ -26,7 +27,11 @@ namespace PicDB
                 .WriteTo.File(logPath, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
 
-            Log.Information("Application Startup");
+            //@Logging:
+            Log.Information("Application Startup (log)"); //Will show up in the log-file, not in the console
+            Debug.WriteLine("Application Startup (console)"); //Will show up in the console, not in the log file
         }
     }
 }
+
+//TODO: Look through ***Window.cs files, possibly move event functions somewhere else and apply Error Handling with EH.Try

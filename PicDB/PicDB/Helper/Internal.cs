@@ -1,5 +1,8 @@
 ﻿
 
+using System.Configuration;
+using Serilog;
+
 namespace PicDB.Helper
 {
     public static class Internal

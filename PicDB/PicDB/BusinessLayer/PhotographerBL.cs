@@ -1,6 +1,7 @@
 ﻿using PicDB.Models;
 using System;
 using System.Collections.Generic;
+using EH = PicDB.Helper.ExceptionHandling;
 
 namespace PicDB
 {
@@ -8,12 +9,12 @@ namespace PicDB
     {
         public static PhotographerModel GetPhotographer(int id)
         {
-            return DataAccessLayer.GetPhotographer(id);
+            return EH.Try(() => DataAccessLayer.GetPhotographer(id));
         }
 
         public static List<PhotographerModel> GetAllPhotographers()
         {
-            return DataAccessLayer.GetAllPhotographers();
+            return EH.Try(DataAccessLayer.GetAllPhotographers);
         }
 
         public static List<string> GetAllPhotographerNames()

@@ -1,4 +1,5 @@
 ﻿using PicDB.Models;
+using EH = PicDB.Helper.ExceptionHandling;
 
 namespace PicDB
 {
@@ -6,7 +7,7 @@ namespace PicDB
     {
         public static EXIFModel GetEXIF(int id)
         {
-            return DataAccessLayer.GetEXIF(id);
+            return EH.Try<EXIFModel>(() => DataAccessLayer.GetEXIF(id));
         }
 
         public static EXIFModel GetEXIF(object obj)
@@ -16,7 +17,7 @@ namespace PicDB
 
         public static IPTCModel GetIPTC(int id)
         {
-            return DataAccessLayer.GetIPTC(id);
+            return EH.Try<IPTCModel>(() => DataAccessLayer.GetIPTC(id));
         }
 
         public static IPTCModel GetIPTC(object obj)
@@ -24,9 +25,9 @@ namespace PicDB
             return GetIPTC((int)obj);
         }
 
-        public static void saveIPTC(IPTCModel iptc)
+        public static void SaveIPTC(IPTCModel iptc)
         {
-            DataAccessLayer.saveIPTC(iptc);
+            EH.Try(() => DataAccessLayer.SaveIPTC(iptc));
         }
     }
 }

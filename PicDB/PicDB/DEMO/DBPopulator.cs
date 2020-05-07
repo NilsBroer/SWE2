@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using PicDB.Helper;
+using Serilog;
 
 namespace PicDB.DEMO
 {

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Documents;
 using PicDB.Helper;
 using PicDB.Models;
+using Serilog;
 
 namespace PicDB
 {
@@ -19,6 +20,7 @@ namespace PicDB
             if (!reader.HasRows)
             {
                 reader.Close();
+                Log.Error("Picture with Id {id} does not exist in DataBase.", id);
                 return null;
             }
 
@@ -45,6 +47,8 @@ namespace PicDB
             if (!reader.HasRows)
             {
                 reader.Close();
+                Log.Error("Unable to fetch Pictures from DataBase.");
+                return /*empty*/ pictureList;
             }
             else
             {
@@ -76,6 +80,8 @@ namespace PicDB
             if (!reader.HasRows)
             {
                 reader.Close();
+                //Log.Information("Unable to fetch data for Pictures with search-parameter {param} from DataBase.", param);
+                return /*empty*/ pictureList;
             }
             else 
             {
@@ -113,6 +119,8 @@ namespace PicDB
             if (!reader.HasRows)
             {
                 reader.Close();
+                //Log.Information("Unable to fetch data for Pictures with search-parameters {params} from DataBase.", param);
+                return /*empty*/ pictureList;
             }
             else
             {

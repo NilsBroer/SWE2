@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using PicDB.Models;
 using PicDB.Helper;
+using Serilog;
 
 namespace PicDB
 {
@@ -17,7 +18,8 @@ namespace PicDB
             if (!reader.HasRows)
             {
                 reader.Close();
-                return null; //TODO: Handle
+                Log.Information("EXIF-data for Picture with Id {pictureId} does not exist.", pictureId);
+                return null;
             }
 
             reader.Read();
@@ -49,7 +51,8 @@ namespace PicDB
             if (!reader.HasRows)
             {
                 reader.Close();
-                return null; //TODO: Handle
+                Log.Information("IPTC-data for Picture with Id {pictureId} does not exist.", pictureId);
+                return null;
             }
 
             reader.Read();
@@ -71,7 +74,7 @@ namespace PicDB
             return iptc;
         }
 
-        public static void saveIPTC(IPTCModel iptc)
+        public static void SaveIPTC(IPTCModel iptc)
         {
             SqlCommand command;
             var old = GetIPTC(iptc.PictureId);

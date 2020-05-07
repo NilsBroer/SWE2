@@ -10,11 +10,6 @@ namespace PicDB
 
         public static DataAccessLayer Instance => Singleton.Value;
 
-        private DataAccessLayer()
-        {
-
-        }
-
         //Singleton-Source: https://csharpindepth.com/articles/singleton [Type 6]
     }
 }

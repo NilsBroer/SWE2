@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace PicDB
 {
     sealed partial class BusinessLayer
@@ -11,7 +10,6 @@ namespace PicDB
 
         private BusinessLayer()
         {
-
         }
 
         //Singleton-Source: https://csharpindepth.com/articles/singleton [Type 6]

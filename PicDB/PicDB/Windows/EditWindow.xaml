@@ -9,7 +9,7 @@
     <Grid>
         <DockPanel>
             <Border DockPanel.Dock="Left" Width="400">
-                <ListBox x:Name="PhotographerListBox" ItemsSource="{Binding}" SelectionChanged="changePhotographer" DisplayMemberPath="FullName">
+                <ListBox x:Name="PhotographerListBox" ItemsSource="{Binding}" SelectionChanged="ChangePhotographer" DisplayMemberPath="FullName">
 
                 </ListBox>
             </Border>

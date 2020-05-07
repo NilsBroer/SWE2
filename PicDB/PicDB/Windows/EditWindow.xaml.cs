@@ -11,19 +11,19 @@ namespace PicDB
     /// </summary>
     public partial class EditWindow : UserControl
     {
-        PhotographerListViewModel photographerListViewModel;
-        SolidColorBrush red = new BrushConverter().ConvertFromString("IndianRed") as SolidColorBrush;
-        SolidColorBrush green = new BrushConverter().ConvertFromString("LightGreen") as SolidColorBrush;
+        readonly PhotographerListViewModel _photographerListViewModel;
+        readonly SolidColorBrush _red = new BrushConverter().ConvertFromString("IndianRed") as SolidColorBrush;
+        readonly SolidColorBrush _green = new BrushConverter().ConvertFromString("LightGreen") as SolidColorBrush;
 
         public EditWindow()
         {
             InitializeComponent();
-            photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
-            PhotographerListBox.ItemsSource = photographerListViewModel.PhotographerViewModels;
+            _photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
+            PhotographerListBox.ItemsSource = _photographerListViewModel.PhotographerViewModels;
         }
 
         //Events
-        void changePhotographer(object sender, SelectionChangedEventArgs args)
+        void ChangePhotographer(object sender, SelectionChangedEventArgs args)
         {
             if (PhotographerListBox.SelectedItem != null)
             {
@@ -37,38 +37,29 @@ namespace PicDB
 
         private void FirstnameBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            photographerListViewModel.ValidFirstName = ((TextBox)sender).Text.Length <= 100 ?  true : false;
-            
-            if (photographerListViewModel.ValidFirstName)
-                ((TextBox)sender).Background = green;
-            else
-                ((TextBox)sender).Background = red;
+            _photographerListViewModel.ValidFirstName = ((TextBox)sender).Text.Length <= 100;
+
+            ((TextBox)sender).Background = _photographerListViewModel.ValidFirstName ? _green : _red;
         }
 
         private void SurnameBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            photographerListViewModel.ValidSurname = ((TextBox)sender).Text.Length <= 50 ? true : false;
+            _photographerListViewModel.ValidSurname = ((TextBox)sender).Text.Length <= 50;
 
-            if (photographerListViewModel.ValidSurname)
-                ((TextBox)sender).Background = green;
-            else
-                ((TextBox)sender).Background = red;
+            ((TextBox)sender).Background = _photographerListViewModel.ValidSurname ? _green : _red;
         }
 
         private void BirthdayBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            photographerListViewModel.ValidBirthday = ((DatePicker)sender).SelectedDate <= DateTime.Today ? true : false;
+            _photographerListViewModel.ValidBirthday = ((DatePicker)sender).SelectedDate <= DateTime.Today;
 
-            if (photographerListViewModel.ValidBirthday)
-                ((DatePicker)sender).Background = green;
-            else
-                ((DatePicker)sender).Background = red;
+            ((DatePicker)sender).Background = _photographerListViewModel.ValidBirthday ? _green : _red;
         }
 
         private void NotesBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            photographerListViewModel.ModifiedNotes = true;
-            ((TextBox)sender).Background = green;
+            _photographerListViewModel.ModifiedNotes = true;
+            ((TextBox)sender).Background = _green;
         }
 
         private void Update_Click(object sender, System.Windows.RoutedEventArgs e)

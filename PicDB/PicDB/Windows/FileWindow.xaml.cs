@@ -81,7 +81,7 @@ namespace PicDB
                 PhotographerName = (string) (PhotographerBox.SelectedItem ?? PhotographerBox.Text),
                 Notes = NotesBox.Text
             };
-            BusinessLayer.saveIPTC(iptc);
+            BusinessLayer.SaveIPTC(iptc);
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)

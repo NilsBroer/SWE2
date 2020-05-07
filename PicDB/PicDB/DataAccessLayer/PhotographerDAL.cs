@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Documents;
 using PicDB.Helper;
 using PicDB.Models;
+using Serilog;
 
 namespace PicDB
 {
@@ -19,7 +20,8 @@ namespace PicDB
             if (!reader.HasRows)
             {
                 reader.Close();
-                CustomException.ThrowNoDataException();
+                Log.Error("Data for Photographer with Id {id} does not exist.", id);
+                return null;
             }
 
             reader.Read();
@@ -42,14 +44,15 @@ namespace PicDB
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Photographers");
             SqlDataReader reader = command.ExecuteReader();
+            List<PhotographerModel> photographerList = new List<PhotographerModel>();
+
 
             if (!reader.HasRows)
             {
                 reader.Close();
-                CustomException.ThrowNoDataException();
+                Log.Error("Unable to fetch data for Photographers from DataBase.");
+                return /*empty*/ photographerList;
             }
-
-            List<PhotographerModel> photographerList = new List<PhotographerModel>();
 
             while (reader.Read())
             {
