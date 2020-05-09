@@ -2,14 +2,12 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Serilog;
-using Serilog.Core;
 
 namespace PicDB.Helper
 {
     public sealed class DbHelper
     {
-        private static readonly Lazy<DbHelper>
+        public static readonly Lazy<DbHelper>
             Singleton = new Lazy<DbHelper>(() => new DbHelper());
 
         public static DbHelper Instance => Singleton.Value;
