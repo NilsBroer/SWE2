@@ -1,6 +1,7 @@
 ﻿using PicDB.Models;
 using System;
 using System.Collections.Generic;
+using PicDB.ViewModels;
 using EH = PicDB.Helper.ExceptionHandling;
 
 namespace PicDB
@@ -28,6 +29,16 @@ namespace PicDB
             }
 
             return photographerNames;
+        }
+
+        public static void UpdatePhotographer(PhotographerViewModel vm)
+        {
+            DataAccessLayer.UpdatePhotographer(vm);
+        }
+
+        public static void CreatePhotographer(PhotographerViewModel vm)
+        {
+            DataAccessLayer.CreatePhotographer(vm);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Documents;
 using PicDB.Helper;
 using PicDB.Models;
+using PicDB.ViewModels;
 using Serilog;
 
 namespace PicDB
@@ -69,6 +70,42 @@ namespace PicDB
 
             reader.Close();
             return photographerList;
+        }
+
+        public static void UpdatePhotographer(PhotographerViewModel vm)
+        {
+            SqlCommand command;
+            
+            command = DbHelper.CreateCommand("UPDATE PHOTOGRAPHERS SET " +
+                                                        "Name = @name," +
+                                                        "Surname = @surname," +
+                                                        "Birthday = @birthday," +
+                                                        "Notes = @notes" +
+                                                        " WHERE Id = @id");
+
+            command.Parameters.AddWithValue("@id", vm.Id);
+            command.Parameters.AddWithValue("@surname", vm.Surname);
+            command.Parameters.AddWithValue("@name", vm.Name);
+            command.Parameters.AddWithValue("@birthday", vm.Birthday ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@notes", vm.Notes);
+
+            command.ExecuteNonQuery();
+        }
+
+        public static void CreatePhotographer(PhotographerViewModel vm)
+        {
+            SqlCommand command;
+
+            command = DbHelper.CreateCommand("INSERT INTO PHOTOGRAPHERS " +
+                                                "(Name, Surname, Birthday, Notes)" +
+                                                " VALUES (@name, @surname, @birthday, @notes)");
+
+            command.Parameters.AddWithValue("@surname", vm.Surname);
+            command.Parameters.AddWithValue("@name", vm.Name);
+            command.Parameters.AddWithValue("@birthday", vm.Birthday ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@notes", vm.Notes ?? (object)DBNull.Value);
+
+            command.ExecuteNonQuery();
         }
     }
 }

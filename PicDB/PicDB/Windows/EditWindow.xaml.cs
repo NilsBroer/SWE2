@@ -11,7 +11,7 @@ namespace PicDB
     /// </summary>
     public partial class EditWindow : UserControl
     {
-        readonly PhotographerListViewModel _photographerListViewModel;
+        PhotographerListViewModel _photographerListViewModel;
         readonly SolidColorBrush _red = new BrushConverter().ConvertFromString("IndianRed") as SolidColorBrush;
         readonly SolidColorBrush _green = new BrushConverter().ConvertFromString("LightGreen") as SolidColorBrush;
 
@@ -19,6 +19,7 @@ namespace PicDB
         {
             InitializeComponent();
             _photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
+            _photographerListViewModel.ValidBirthday = true;
             PhotographerListBox.ItemsSource = _photographerListViewModel.PhotographerViewModels;
         }
 
@@ -30,7 +31,7 @@ namespace PicDB
                 PhotographerViewModel photographer = (PhotographerViewModel)PhotographerListBox.SelectedItem;
                 FirstnameBox.Text = photographer.Name ?? "First Name";
                 SurnameBox.Text = photographer.Surname ?? "Surname";
-                BirthdayBox.SelectedDate = photographer.Birthday.GetValueOrDefault(DateTime.Today);
+                BirthdayBox.SelectedDate = photographer.Birthday;
                 NotesBox.Text = photographer.Notes ?? "Notes";
             }
         }
@@ -51,7 +52,7 @@ namespace PicDB
 
         private void BirthdayBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            _photographerListViewModel.ValidBirthday = ((DatePicker)sender).SelectedDate <= DateTime.Today;
+            _photographerListViewModel.ValidBirthday = (((DatePicker)sender).SelectedDate <= DateTime.Today) || ((DatePicker)sender).SelectedDate == null;
 
             ((DatePicker)sender).Background = _photographerListViewModel.ValidBirthday ? _green : _red;
         }
@@ -64,12 +65,48 @@ namespace PicDB
 
         private void Update_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (PhotographerListBox.SelectedItem != null && _photographerListViewModel.ValidBirthday && _photographerListViewModel.ValidFirstName && _photographerListViewModel.ValidSurname)
+            {
+                PhotographerViewModel vm = (PhotographerViewModel)PhotographerListBox.SelectedItem;
+                
+                if (BirthdayBox.SelectedDate <= DateTime.Today)
+                    vm.Birthday = BirthdayBox.SelectedDate;
+                if (SurnameBox.Text != "Surname" && SurnameBox.Text.Replace(" ", "").Length > 0)
+                    vm.Surname = SurnameBox.Text;
+                if (FirstnameBox.Text != "First Name" && FirstnameBox.Text.Replace(" ", "").Length > 0)
+                    vm.Name = FirstnameBox.Text;
+                if (_photographerListViewModel.ModifiedNotes)
+                    vm.Notes = NotesBox.Text;
 
+                BusinessLayer.UpdatePhotographer(vm);
+                _photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
+                PhotographerListBox.ItemsSource = _photographerListViewModel.PhotographerViewModels;
+            }
         }
 
         private void Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            //This seems botchy, but currently you can bypass the "live" validity check with backspace, as this doesn't register as a keystroke, so we have to check it again for creation
+            _photographerListViewModel.ValidFirstName = (SurnameBox.Text != "Surname" && SurnameBox.Text.Replace(" ", "").Length > 0);
+            _photographerListViewModel.ValidSurname = (FirstnameBox.Text != "First Name" && FirstnameBox.Text.Replace(" ", "").Length > 0);
 
+            if (_photographerListViewModel.ValidBirthday && _photographerListViewModel.ValidFirstName && _photographerListViewModel.ValidSurname)
+            {
+                PhotographerViewModel vm = new PhotographerViewModel();
+
+                if (BirthdayBox.SelectedDate <= DateTime.Today)
+                    vm.Birthday = BirthdayBox.SelectedDate;
+
+                vm.Surname = SurnameBox.Text;
+                vm.Name = FirstnameBox.Text;
+
+                if (_photographerListViewModel.ModifiedNotes)
+                    vm.Notes = NotesBox.Text;
+
+                BusinessLayer.CreatePhotographer(vm);
+                _photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
+                PhotographerListBox.ItemsSource = _photographerListViewModel.PhotographerViewModels;
+            }
         }
     }
 }
