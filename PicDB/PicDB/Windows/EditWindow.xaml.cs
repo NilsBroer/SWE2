@@ -19,7 +19,16 @@ namespace PicDB
         {
             InitializeComponent();
             _photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
+
             _photographerListViewModel.ValidBirthday = true;
+            _photographerListViewModel.ValidFirstName = FirstnameBox.Text.Length <= 100;
+            _photographerListViewModel.ValidSurname = SurnameBox.Text.Length <= 50;
+
+            FirstnameBox.Background = _photographerListViewModel.ValidFirstName ? _green : _red;
+            SurnameBox.Background = _photographerListViewModel.ValidSurname ? _green : _red;
+            BirthdayBox.Background = _photographerListViewModel.ValidBirthday ? _green : _red;
+            NotesBox.Background = _green;
+
             PhotographerListBox.ItemsSource = _photographerListViewModel.PhotographerViewModels;
         }
 
@@ -36,14 +45,14 @@ namespace PicDB
             }
         }
 
-        private void FirstnameBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void FirstnameBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             _photographerListViewModel.ValidFirstName = ((TextBox)sender).Text.Length <= 100;
 
             ((TextBox)sender).Background = _photographerListViewModel.ValidFirstName ? _green : _red;
         }
 
-        private void SurnameBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void SurnameBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             _photographerListViewModel.ValidSurname = ((TextBox)sender).Text.Length <= 50;
 
@@ -57,7 +66,7 @@ namespace PicDB
             ((DatePicker)sender).Background = _photographerListViewModel.ValidBirthday ? _green : _red;
         }
 
-        private void NotesBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void NotesBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             _photographerListViewModel.ModifiedNotes = true;
             ((TextBox)sender).Background = _green;
@@ -80,7 +89,13 @@ namespace PicDB
 
                 BusinessLayer.UpdatePhotographer(vm);
                 _photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
+
+                _photographerListViewModel.ValidBirthday = true;
+                _photographerListViewModel.ValidFirstName = true;
+                _photographerListViewModel.ValidSurname = true;
+
                 PhotographerListBox.ItemsSource = _photographerListViewModel.PhotographerViewModels;
+                PhotographerListBox.SelectedItem = _photographerListViewModel.PhotographerViewModels[0];
             }
         }
 
