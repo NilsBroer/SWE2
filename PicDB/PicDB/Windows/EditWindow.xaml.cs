@@ -121,6 +121,7 @@ namespace PicDB
                 BusinessLayer.CreatePhotographer(vm);
                 _photographerListViewModel = new PhotographerListViewModel(BusinessLayer.GetAllPhotographers());
                 PhotographerListBox.ItemsSource = _photographerListViewModel.PhotographerViewModels;
+                PhotographerListBox.SelectedItem = _photographerListViewModel.PhotographerViewModels[0];
             }
         }
     }
