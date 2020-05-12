@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <None Remove="images\internal\magnifier.png" />
+    <None Remove="images\internal\nts.gif" />
     <None Remove="images\internal\placeholder.png" />
+    <None Remove="images\internal\wip.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +37,13 @@
     <Resource Include="images\internal\magnifier.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\internal\nts.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\internal\placeholder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\internal\wip.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

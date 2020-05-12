@@ -8,7 +8,21 @@
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:gif="http://wpfanimatedgif.codeplex.com">
     <Grid>
-        <Image gif:ImageBehavior.RepeatBehavior="Forever"
-               gif:ImageBehavior.AnimatedSource="../images/internal/wip.gif" />
+        <Button Click="ButtonBase_OnClick">
+            <Button.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Resources>
+            <Image gif:ImageBehavior.RepeatBehavior="Forever"
+                   gif:ImageBehavior.AnimatedSource="{Binding}"
+                   x:Name="SwitchingGif"/>
+        </Button>
     </Grid>
 </UserControl>
