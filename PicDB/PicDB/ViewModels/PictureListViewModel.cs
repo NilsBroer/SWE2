@@ -20,6 +20,7 @@ namespace PicDB.ViewModels
             {
                 _list.Add(new PictureViewModel(i));
             });
+
             SelectedPicture = _list.FirstOrDefault();
 
             BusinessLayer.GetAllPictures().ForEach(i =>
@@ -34,6 +35,7 @@ namespace PicDB.ViewModels
             {
                 _list.Add(new PictureViewModel(i));
             });
+
             SelectedPicture = _list.FirstOrDefault();
 
             models.ForEach(i =>

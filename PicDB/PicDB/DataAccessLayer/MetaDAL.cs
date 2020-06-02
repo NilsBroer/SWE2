@@ -90,7 +90,11 @@ namespace PicDB
                                                             "CreationDate = @date" +
                                                             " WHERE PictureId = @id");
                 command.Parameters.AddWithValue("@edited", true);
-                command.Parameters.AddWithValue("@date", old.CreationDate);
+                
+                if (old.CreationDate != null)
+                    command.Parameters.AddWithValue("@date", old.CreationDate);
+                else
+                    command.Parameters.AddWithValue("@date", DateTime.Now);
             }
             else
             {

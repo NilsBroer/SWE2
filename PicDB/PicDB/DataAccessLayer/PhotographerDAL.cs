@@ -87,7 +87,7 @@ namespace PicDB
             command.Parameters.AddWithValue("@surname", vm.Surname);
             command.Parameters.AddWithValue("@name", vm.Name);
             command.Parameters.AddWithValue("@birthday", vm.Birthday ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@notes", vm.Notes);
+            command.Parameters.AddWithValue("@notes", vm.Notes ?? (object)DBNull.Value);
 
             command.ExecuteNonQuery();
         }

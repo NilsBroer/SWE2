@@ -27,7 +27,7 @@ namespace PicDB
 
         public static void SaveIPTC(IPTCModel iptc)
         {
-            EH.Try(() => DataAccessLayer.SaveIPTC(iptc));
+            DataAccessLayer.SaveIPTC(iptc);
         }
     }
 }
