@@ -11,6 +11,9 @@ namespace PicDB
     /// </summary>
     public partial class HelpWindow : UserControl
     {
+        ///
+        /// Initialization for the HelpWindow
+        ///
         public HelpWindow()
         {
             InitializeComponent();

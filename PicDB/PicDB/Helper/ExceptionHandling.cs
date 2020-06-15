@@ -4,8 +4,14 @@ using Serilog;
 
 namespace PicDB.Helper
 {
+    ///
+    /// Methods for Exception Handling
+    ///
     public static class ExceptionHandling
     {
+        ///
+        /// Executes any Function inside a try/catch (Might be bad for Performance since Non-specific Exception handling is costly.)
+        ///
         public static dynamic Try<T>(Func<T> getFunction /*(param)*/)
         {
             try
@@ -20,6 +26,9 @@ namespace PicDB.Helper
             }
         }
 
+        ///
+        /// Executes any Function inside a try/catch (Might be bad for Performance since Non-specific Exception handling is costly.)
+        ///
         public static void Try(Action getFunction)
         {
             try

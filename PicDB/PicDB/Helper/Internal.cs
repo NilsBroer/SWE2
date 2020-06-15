@@ -5,10 +5,16 @@ using Serilog;
 
 namespace PicDB.Helper
 {
+    ///
+    /// Class for Internal Information
+    ///
     public static class Internal
     {
         public static string Path = GetPath();
 
+        ///
+        /// Returns Path towards the project Folder
+        ///
         public static string GetPath()
         {
             return

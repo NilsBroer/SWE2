@@ -5,9 +5,19 @@ using PicDB.Models;
 
 namespace PicDB.ViewModels
 {
+    ///
+    /// ViewModel for EXIF Data
+    ///
     public class EXIFViewModel : BaseViewModel
     {
+        ///
+        /// Empty Constructor
+        ///
         public EXIFViewModel() { }
+
+        ///
+        /// Constructor for existing Data
+        ///
         public EXIFViewModel(EXIFModel exif)
         {
             if(exif != null)
@@ -21,11 +31,34 @@ namespace PicDB.ViewModels
             }
         }
 
+        ///
+        /// Date and Time of Creation
+        ///
         public string DateAndTime { get; set; }
+
+        ///
+        /// Orientation
+        ///
         public string Orientation { get; set; }
+
+        ///
+        /// Focal Length
+        ///
         public string FocalLength { get; set; }
+
+        ///
+        /// FNumber
+        ///
         public string FNumber { get; set; }
+
+        ///
+        /// Exposure
+        ///
         public string Exposure { get; set; }
+
+        ///
+        /// ISO Number
+        ///
         public string Iso { get; set; }
 
         internal string FocalLengthForView(Tuple<float?, float?> focalLength)

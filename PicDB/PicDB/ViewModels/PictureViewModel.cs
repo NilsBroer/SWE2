@@ -8,9 +8,19 @@ using System.Windows.Controls;
 
 namespace PicDB.ViewModels
 {
+    ///
+    /// ViewModel for the Pictures
+    ///
     public class PictureViewModel : BaseViewModel
     {
+        ///
+        /// Empty Constructor
+        ///
         public PictureViewModel() { }
+
+        ///
+        /// Constructor for existing Data
+        ///
         public PictureViewModel(PictureModel pic)
         {
             Id = pic.Id;
@@ -20,13 +30,26 @@ namespace PicDB.ViewModels
             Image = BusinessLayer.PictureToImage(pic);
         }
 
+        ///
+        /// Picture ID
+        ///
         public int Id { get; set; }
-        public string FilePath { get; set; }    //Do we even need this information with our PictureViewModel?
-        //public IPTCViewModel Iptc { get; set; }
-        //public EXIFViewModel Exif { get; set; }
+
+        ///
+        /// FilePath to the Pic
+        ///
+        public string FilePath { get; set; }
+
+        ///
+        /// Image of the Pic (The thing you can "see")
+        ///
         public Image Image { get; set; }
 
         private PhotographerViewModel _photographer;
+
+        ///
+        /// Photographer of the Pic
+        ///
         public PhotographerViewModel Photographer
         {
             get { return _photographer; }

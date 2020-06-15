@@ -15,6 +15,9 @@ namespace PicDB
         readonly SolidColorBrush _red = new BrushConverter().ConvertFromString("IndianRed") as SolidColorBrush;
         readonly SolidColorBrush _green = new BrushConverter().ConvertFromString("LightGreen") as SolidColorBrush;
 
+        ///
+        /// Initialization for the EditWindow
+        ///
         public EditWindow()
         {
             InitializeComponent();

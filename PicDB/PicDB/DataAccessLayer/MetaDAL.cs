@@ -6,8 +6,14 @@ using Serilog;
 
 namespace PicDB
 {
+    ///
+    /// MetaData-Part of the DAL.
+    ///
     sealed partial class DataAccessLayer
     {
+        ///
+        /// Returns the n-th picture's EXIF-Data
+        ///
         public static EXIFModel GetEXIF(int pictureId)
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT * FROM EXIF WHERE PictureID = @Id");
@@ -34,13 +40,17 @@ namespace PicDB
                     reader[i++] is DBNull ? null : (float?)reader[i - 1],
                     reader[i++] is DBNull ? null : (float?)reader[i - 1]),
                 FNumber = reader[i++] is DBNull ? null : (float?)reader[i - 1],
-                Exposure = reader[i++] is DBNull ? null : (string)reader[i - 1],
+                Exposure = reader[i++] is DBNull ? null : reader[i - 1].ToString(),
                 Iso = reader[i++] is DBNull ? null : (int?)reader[i - 1]
             };
 
             reader.Close();
             return exif;
         }
+
+        ///
+        /// Returns the n-th Picture's IPTC-Data
+        ///
         public static IPTCModel GetIPTC(int pictureId)
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT * FROM IPTC WHERE PictureId = @Id");
@@ -74,6 +84,9 @@ namespace PicDB
             return iptc;
         }
 
+        ///
+        /// Saves or Updates new IPTC-Data.
+        ///
         public static void SaveIPTC(IPTCModel iptc)
         {
             SqlCommand command;

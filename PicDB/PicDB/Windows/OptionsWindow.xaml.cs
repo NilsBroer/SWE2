@@ -13,6 +13,10 @@ namespace PicDB
     public partial class OptionsWindow : UserControl
     {
         private static int _swap = 1;
+
+        ///
+        /// Initialization for the Options Window
+        ///
         public OptionsWindow()
         {
             InitializeComponent();

@@ -7,10 +7,19 @@ using System.Text;
 
 namespace PicDB.Helper
 {
+    ///
+    /// Handles the Mailing Function of the Program
+    ///
     public static class MailHelper
     {
+        ///
+        /// Accessor for the SMTP Client
+        ///
         public static SmtpClient DefaultSmtpClient = GetSmtpClient();
 
+        ///
+        /// Returns the SmtpClient for the Mail 
+        ///
         public static SmtpClient GetSmtpClient()
         {
             return new SmtpClient()
@@ -27,6 +36,9 @@ namespace PicDB.Helper
 
         private static readonly MailAddress DefaultMailAddress = new MailAddress("SendAndReceiveViaSMTP@gmail.com");
 
+        ///
+        /// Creates the Mail to be sent.
+        ///
         public static MailMessage CreateMailMessage(string from, string name, string subject, string body)
         {
             var newline = "  \r\n";

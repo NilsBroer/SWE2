@@ -9,8 +9,14 @@ using Serilog;
 
 namespace PicDB
 {
+    ///
+    /// Photographer-Part of the DAL
+    ///
     sealed partial class DataAccessLayer
     {
+        ///
+        /// Returns the n-th Photographer as a Model.
+        ///
         public static PhotographerModel GetPhotographer(int id)
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT Name, Surname, Birthday, Notes FROM Photographers WHERE Id = @Id;");
@@ -41,6 +47,9 @@ namespace PicDB
             return photographer;
         }
 
+        ///
+        /// Returns all Photographers as a List 
+        ///
         public static List<PhotographerModel> GetAllPhotographers()
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Photographers");
@@ -72,6 +81,9 @@ namespace PicDB
             return photographerList;
         }
 
+        ///
+        /// Updates a specific Photographer
+        ///
         public static void UpdatePhotographer(PhotographerViewModel vm)
         {
             SqlCommand command;
@@ -92,6 +104,9 @@ namespace PicDB
             command.ExecuteNonQuery();
         }
 
+        ///
+        /// Creates a new Photographer
+        ///
         public static void CreatePhotographer(PhotographerViewModel vm)
         {
             SqlCommand command;

@@ -7,6 +7,9 @@ namespace PicDB
     /// </summary>
     public partial class Tabs : UserControl
     {
+        ///
+        /// Initialization for the Tabs
+        ///
         public Tabs()
         {
             InitializeComponent();

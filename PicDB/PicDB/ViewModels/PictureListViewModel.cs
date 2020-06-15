@@ -7,6 +7,9 @@ using System.Windows.Controls;
 
 namespace PicDB.ViewModels
 {
+    ///
+    /// ViewModel for the List of all Pictures
+    ///
     public class PictureListViewModel : BaseViewModel
     {
         private IEnumerable<PictureViewModel> _default;
@@ -14,6 +17,9 @@ namespace PicDB.ViewModels
         private readonly ObservableCollection<Image> _imageList = new ObservableCollection<Image>();
         private PictureViewModel _selectedPicture;
 
+        ///
+        /// Empty Constructor
+        ///
         public PictureListViewModel()
         {
             BusinessLayer.GetAllPictures().ForEach(i =>
@@ -29,6 +35,9 @@ namespace PicDB.ViewModels
             });
         }
 
+        ///
+        /// Constructor for existing Data
+        ///
         public PictureListViewModel(List<PictureModel> models)
         {
             models.ForEach(i =>
@@ -44,30 +53,20 @@ namespace PicDB.ViewModels
             });
         }
 
-        public int Count { get; set; }
-        public int SelectedIndex { get; set; }
-        public String PictureString { get; set; }
+
+        ///
+        /// Returns the Currently Selected Picture, implementing OPC
+        ///
         public PictureViewModel SelectedPicture { get => _selectedPicture; set { _selectedPicture = value; OnPropertyChanged(nameof(SelectedPicture)); } }
+
+        ///
+        /// List of Pictures implementing OPC
+        ///
         public IEnumerable<PictureViewModel> List { get => _list; set { _list = (ObservableCollection<PictureViewModel>)value; OnPropertyChanged(nameof(List)); } }
+
+        ///
+        /// List of Images (the Image portion of Pictures)
+        ///
         public IEnumerable<Image> ImageList { get => _imageList; }
-        public IEnumerable<PictureViewModel> PreviousPictures { get; set; }
-        public IEnumerable<PictureViewModel> NextPictures { get; set; }
-
-        public PictureViewModel SetSearchList(IEnumerable<PictureViewModel> list)
-        {
-            if (_default == null)
-                _default = List;
-            List = list;
-            return List.FirstOrDefault();
-        }
-
-        public PictureViewModel ResetSearch()
-        {
-            if (_default == null) 
-                return null;
-            List = _default;
-            _default = null;
-            return List.FirstOrDefault();
-        }
     }
 }

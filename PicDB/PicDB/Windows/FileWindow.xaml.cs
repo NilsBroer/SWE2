@@ -12,6 +12,9 @@ namespace PicDB
     /// </summary>
     public partial class FileWindow : UserControl
     {
+        ///
+        /// Initialization for the FileWindow
+        ///
         public FileWindow()
         {
             InitializeComponent();

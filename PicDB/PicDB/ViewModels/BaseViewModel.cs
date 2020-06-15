@@ -7,8 +7,14 @@ using System.Windows;
 
 namespace PicDB.ViewModels
 {
+    ///
+    /// Base View Model implementing the INotifyPropertyChanged
+    ///
     public abstract class BaseViewModel : DependencyObject, INotifyPropertyChanged
     {
+        ///
+        /// Event Handler for INPC
+        ///
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(String property)
         {

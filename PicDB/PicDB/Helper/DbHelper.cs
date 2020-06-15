@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 
 namespace PicDB.Helper
 {
+    ///
+    /// Various Helper Methods for Database Access
+    ///
     public sealed class DbHelper
     {
         public static readonly Lazy<DbHelper>
@@ -22,6 +25,9 @@ namespace PicDB.Helper
         public static string ConnectionString = GetConnectionString();
         public static SqlConnection Connection = GetConnection();
 
+        ///
+        /// Gets either Chris' or Nils' File Path to the Database from a ConfigFile
+        ///
         public static string GetConnectionString()
         {
             return
@@ -30,6 +36,9 @@ namespace PicDB.Helper
                     : ConfigurationManager.ConnectionStrings["ChrisConnectionString"].ConnectionString;
         }
 
+        ///
+        /// Gets the Connection to the Database
+        ///
         private static SqlConnection GetConnection()
         {
 
@@ -40,6 +49,9 @@ namespace PicDB.Helper
             return connection;
         }
 
+        ///
+        /// Builds SQL Commands for better readability in the Code
+        ///
         public static SqlCommand CreateCommand(string commandText)
         {
             SqlCommand command = new SqlCommand(null, Connection)
@@ -50,6 +62,9 @@ namespace PicDB.Helper
             return command;
         }
 
+        ///
+        /// Returns a Table from a Query
+        ///
         public static DataTable GetDataTable(SqlCommand command)
         {
             DataTable table = new DataTable();

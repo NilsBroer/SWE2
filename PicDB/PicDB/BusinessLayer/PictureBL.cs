@@ -9,28 +9,46 @@ using EH = PicDB.Helper.ExceptionHandling;
 
 namespace PicDB
 {
+    ///
+    /// Picture-Part of the BusinessLayer. Calls the DAL.
+    ///
     sealed partial class BusinessLayer
     {
+        ///
+        /// Gets the n-th Picture.
+        ///
         public static PictureModel GetPicture(int id)
         {
             return EH.Try(() => DataAccessLayer.GetPicture(id));
         }
 
+        ///
+        /// Returns a List of all Pictures
+        ///
         public static List<PictureModel> GetAllPictures()
         {
             return EH.Try(DataAccessLayer.GetAllPictures);
         }
 
+        ///
+        /// Returns a List of all Pictures including one Search Term
+        ///
         public static List<PictureModel> GetPicturesOneParam(String param)
         {
             return EH.Try(() => DataAccessLayer.GetPicturesOneParam(param));
         }
 
+        ///
+        /// Returns a List of all Pictures including multiple Search Terms
+        ///
         public static List<PictureModel> GetPicturesMultipleParams(String[] param)
         {
             return EH.Try(() => DataAccessLayer.GetPicturesMultipleParams(param));
         }
 
+        ///
+        /// Converts a PictureModel to the Image Type.
+        ///
         public static Image PictureToImage(PictureModel picture)
         {
             try
@@ -49,6 +67,9 @@ namespace PicDB
             
         }
 
+        ///
+        /// Converts a List of Pictures to a List of Images
+        ///
         public static List<Image> PicturesToImages(List<PictureModel> pictureList)
         {
             List<Image> imageList = new List<Image>();
@@ -60,6 +81,9 @@ namespace PicDB
             return imageList;
         }
 
+        ///
+        /// Clones an Image
+        ///
         public static Image CloneImage(Image image)
         {
             return new Image()
@@ -69,6 +93,9 @@ namespace PicDB
             };
         }
 
+        ///
+        /// Generic version for the CloneImage-Method
+        ///
         public static Image CloneImage(object obj)
         {
             return CloneImage((Image)obj);

@@ -10,8 +10,14 @@ using Serilog;
 
 namespace PicDB.DEMO
 {
+    ///
+    /// Helper to Populate the Database
+    ///
     public static class DbPopulator
     {
+        ///
+        /// Inserts all Pokemon
+        ///
         public static void InsertDemoImages(string path, string pattern)
         {
             List<string> fileNames = new List<string>(System.IO.Directory.EnumerateFiles(path,pattern));

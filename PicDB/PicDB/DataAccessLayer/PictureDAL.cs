@@ -8,8 +8,14 @@ using Serilog;
 
 namespace PicDB
 {
+    ///
+    /// Picture-Part of the DAL
+    ///
     sealed partial class DataAccessLayer
     {
+        ///
+        /// Returns the n-th Picture
+        ///
         public static PictureModel GetPicture(int id)
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT FileName, FilePath, PhotographerId FROM Pictures WHERE Id = @Id;");
@@ -38,6 +44,9 @@ namespace PicDB
             return picture;
         }
 
+        ///
+        /// Returns all Pictures as a List
+        ///
         public static List<PictureModel> GetAllPictures()
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures");
@@ -70,6 +79,9 @@ namespace PicDB
             return pictureList;
         }
 
+        ///
+        /// Returns all Pictures including a specific Search Term
+        ///
         public static List<PictureModel> GetPicturesOneParam(String param)
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE CHARINDEX(@param,IPTC.PhotographerName) > 0 OR CHARINDEX(@param,IPTC.Category) > 0 OR CHARINDEX(@param,IPTC.KeyWords) > 0 OR CHARINDEX(@param,IPTC.Notes) > 0");
@@ -103,6 +115,9 @@ namespace PicDB
             return pictureList;
         }
 
+        ///
+        /// Returns all Pictures including multiple Search Terms
+        ///
         public static List<PictureModel> GetPicturesMultipleParams(String[] param)
         {
             SqlCommand command = DbHelper.CreateCommand("SELECT * FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE 1=1");
