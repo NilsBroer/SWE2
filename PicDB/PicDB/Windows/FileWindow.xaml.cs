@@ -135,5 +135,26 @@ namespace PicDB
         {
             if(SearchBox.Text.Length == 0) { SearchBox.Text = "Search..."; }
         }
+
+        private void ReportsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchViewModel searchViewModel = new SearchViewModel(SearchBox.Text);
+            if (!searchViewModel.IsActive)
+            {
+                // do nothing
+            }
+            else if (!searchViewModel.IsSpecific && !searchViewModel.HasMultiple)
+            {
+                BusinessLayer.GetReportOneParam(searchViewModel.Search);
+            }
+            else if (!searchViewModel.IsSpecific && searchViewModel.HasMultiple)
+            {
+                BusinessLayer.GetReportMultipleParams(searchViewModel.MultipleSearch);
+            }
+            else if (searchViewModel.IsSpecific)
+            {
+                throw new System.NotImplementedException();
+            }
+        }
     }
 }

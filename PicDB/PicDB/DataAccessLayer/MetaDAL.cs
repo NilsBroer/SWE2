@@ -7,7 +7,7 @@ using Serilog;
 namespace PicDB
 {
     ///
-    /// MetaData-Part of the DAL.
+    /// MetaData-Part of the DAL. 
     ///
     sealed partial class DataAccessLayer
     {

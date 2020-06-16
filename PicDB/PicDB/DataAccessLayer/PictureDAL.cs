@@ -115,6 +115,24 @@ namespace PicDB
             return pictureList;
         }
 
+        public static void GetReportOneParam(String param)
+        {
+            SqlCommand command = DbHelper.CreateCommand("SELECT COUNT(*) FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE KeyWords LIKE '%' + @param + '%'");
+            command.Parameters.AddWithValue("@param", param);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (!reader.HasRows)
+            {
+                reader.Close();
+            }
+            else
+            {
+                if (reader.Read())
+                    Log.Information($"Key Word {param} is included in {reader[0]} Pictures!");
+            }
+        }
+
         ///
         /// Returns all Pictures including multiple Search Terms
         ///
@@ -155,6 +173,27 @@ namespace PicDB
             }
 
             return pictureList;
+        }
+
+        public static void GetReportMultipleParams(String[] param)
+        {
+            foreach (String par in param)
+            {
+                SqlCommand command = DbHelper.CreateCommand("SELECT COUNT(*) FROM Pictures JOIN IPTC ON (Pictures.Id = IPTC.PictureId) WHERE KeyWords LIKE '%' + @param + '%'");
+                command.Parameters.AddWithValue("@param", par);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    reader.Close();
+                }
+                else
+                {
+                    if (reader.Read())
+                        Log.Information($"Key Word {par} is included in {reader[0]} Pictures!");
+                }
+            }
         }
 
         /*

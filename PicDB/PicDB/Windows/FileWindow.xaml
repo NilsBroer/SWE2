@@ -12,6 +12,7 @@
                 <Button Name="SearchButton" Click="SearchButton_Click" BorderThickness="0" DockPanel.Dock="Right" HorizontalAlignment="Left" Height="28" Width="23" Background="White">
                     <Image Source="../images/internal/magnifier.png"/>
                 </Button>
+                <Button Content="Reports" Click="ReportsButton_Click" Background="White" Width="60" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
                 <TextBox Name="SearchBox" KeyDown="SearchBox_KeyDown" GotFocus="SearchBox_OnGotFocus" LostFocus="SearchBox_OnLostFocus" Text="Search..." FontSize="16" HorizontalAlignment="Stretch" Background="Transparent"/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">

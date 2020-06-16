@@ -10,7 +10,7 @@ using EH = PicDB.Helper.ExceptionHandling;
 namespace PicDB
 {
     ///
-    /// Picture-Part of the BusinessLayer. Calls the DAL.
+    /// Picture-Part of the BusinessLayer. Calls the DAL. Also handles Picture-Reports
     ///
     sealed partial class BusinessLayer
     {
@@ -38,12 +38,22 @@ namespace PicDB
             return EH.Try(() => DataAccessLayer.GetPicturesOneParam(param));
         }
 
+        public static void GetReportOneParam(String param)
+        {
+            EH.Try(() => DataAccessLayer.GetReportOneParam(param));
+        }
+
         ///
         /// Returns a List of all Pictures including multiple Search Terms
         ///
         public static List<PictureModel> GetPicturesMultipleParams(String[] param)
         {
             return EH.Try(() => DataAccessLayer.GetPicturesMultipleParams(param));
+        }
+
+        public static void GetReportMultipleParams(String[] param)
+        {
+            EH.Try(() => DataAccessLayer.GetReportMultipleParams(param));
         }
 
         ///
